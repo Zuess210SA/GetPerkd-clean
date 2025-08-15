@@ -1,0 +1,105 @@
+Add this utility function in your /utils/getSubdomain.ts:
+
+ts
+Copy
+Edit
+// utils/getSubdomain.ts
+export const getSubdomain = (): string | null => {
+  if (typeof window === 'undefined') return null;
+
+  const host = window.location.hostname;
+  const parts = host.split('.');
+
+  // Handle localhost or dev
+  if (host.includes('localhost')) return 'dev';
+
+  if (parts.length === 3) {
+    return parts[0]; // e.g., utsa.getperkd.co => 'utsa'
+  }
+
+  return null; // fallback
+};
+🧠 2. Store Subdomain in Global Context
+Create a lightweight context hook to make the subdomain available anywhere.
+
+ts
+Copy
+Edit
+// context/SubdomainContext.tsx
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getSubdomain } from '@/utils/getSubdomain';
+
+const SubdomainContext = createContext<string | null>(null);
+
+export const SubdomainProvider = ({ children }: { children: React.ReactNode }) => {
+  const [subdomain, setSubdomain] = useState<string | null>(null);
+
+  useEffect(() => {
+    const sd = getSubdomain();
+    setSubdomain(sd);
+  }, []);
+
+  return (
+    <SubdomainContext.Provider value={subdomain}>
+      {children}
+    </SubdomainContext.Provider>
+  );
+};
+
+export const useSubdomain = () => useContext(SubdomainContext);
+Then wrap your app in this provider:
+
+tsx
+Copy
+Edit
+// main.tsx or App.tsx
+import { SubdomainProvider } from '@/context/SubdomainContext';
+
+<SubdomainProvider>
+  <App />
+</SubdomainProvider>
+🚀 3. Use Subdomain in API Calls
+You can now use useSubdomain() to filter API data:
+
+ts
+Copy
+Edit
+import { useSubdomain } from '@/context/SubdomainContext';
+import { useQuery } from '@tanstack/react-query';
+
+const DealsList = () => {
+  const subdomain = useSubdomain();
+
+  const { data, isLoading } = useQuery(['deals', subdomain], async () => {
+    const res = await fetch(`/api/student/deals?campus=${subdomain}`);
+    return res.json();
+  });
+
+  return (
+    <div>
+      <h1>Deals for {subdomain?.toUpperCase()}</h1>
+      {/* render deals here */}
+    </div>
+  );
+};
+💡 Bonus: Subdomain to Campus Map
+If you want a cleaner display name:
+
+ts
+Copy
+Edit
+const campusMap: Record<string, string> = {
+  utsa: 'UTSA',
+  txst: 'Texas State',
+  ut: 'UT Austin',
+  alamo: 'Alamo Colleges',
+};
+
+const campusName = campusMap[subdomain || ''] || 'Unknown Campus';
+✅ Next Steps for Replit
+Update your Replit Vite env to handle wildcard domains (*.getperkd.co)
+
+Configure SSL wildcard on Cloudflare or host
+
+Connect your subdomain.getperkd.co to the same app instance
+

@@ -1,0 +1,112 @@
+// App.jsx
+import React, { useState, useEffect } from 'react';
+import DealCard from './DealCard';
+import BusinessDashboard from './BusinessDashboard';
+import AuthPage from './AuthPage';
+import RedemptionHistory from './RedemptionHistory';
+import { supabase } from './supabaseClient';
+import { getUserRedemptions, logRedemption, checkIfRedeemed } from './AddRedemption';
+
+function App() {
+  const [view, setView] = useState('student');
+  const [session, setSession] = useState(null);
+  const [deals, setDeals] = useState([]);
+  const [redemptions, setRedemptions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (session) {
+      fetchDeals();
+      fetchRedemptions();
+    }
+  }, [session]);
+
+  const fetchDeals = async () => {
+    setLoading(true);
+    const { data, error } = await supabase.from('deals').select('*');
+    if (!error) setDeals(data);
+    setLoading(false);
+  };
+
+  const fetchRedemptions = async () => {
+    const { data, error } = await getUserRedemptions(session.user.id);
+    if (!error) setRedemptions(data);
+  };
+
+  const handleNewDeal = async (newDeal) => {
+    const { error } = await supabase.from('deals').insert([newDeal]);
+    if (!error) fetchDeals();
+  };
+
+  const handleRedeem = async (dealId, method) => {
+    const { error } = await logRedemption(dealId, session.user.id, method);
+    if (!error) fetchRedemptions();
+  };
+
+  if (!session) return <AuthPage onAuthSuccess={(session) => setSession(session)} />;
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="mb-6 text-center space-x-3">
+        <button
+          onClick={() => setView('student')}
+          className={`px-4 py-2 rounded ${view === 'student' ? 'bg-blue-600 text-white' : 'bg-white border'}`}
+        >
+          Student Deals
+        </button>
+        <button
+          onClick={() => setView('history')}
+          className={`px-4 py-2 rounded ${view === 'history' ? 'bg-blue-600 text-white' : 'bg-white border'}`}
+        >
+          My Redemptions
+        </button>
+        <button
+          onClick={() => setView('business')}
+          className={`px-4 py-2 rounded ${view === 'business' ? 'bg-blue-600 text-white' : 'bg-white border'}`}
+        >
+          Business Dashboard
+        </button>
+      </div>
+
+      {view === 'student' && (
+        <>
+          <h1 className="text-3xl font-bold text-center mb-6">🎁 Get Perkd: Student Deals</h1>
+          {loading ? (
+            <p className="text-center">Loading deals...</p>
+          ) : deals.length === 0 ? (
+            <p className="text-center text-gray-600">No deals available yet.</p>
+          ) : (
+            deals.map((deal) => (
+              <DealCard
+                key={deal.id}
+                deal={deal}
+                redeemed={checkIfRedeemed(redemptions, deal.id)}
+                onRedeem={handleRedeem}
+              />
+            ))
+          )}
+        </>
+      )}
+
+      {view === 'history' && <RedemptionHistory user={session.user} />}
+
+      {view === 'business' && <BusinessDashboard onNewDeal={handleNewDeal} />}
+    </div>
+  );
+}
+
+export default App;

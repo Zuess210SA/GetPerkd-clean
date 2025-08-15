@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Auth Test - Get Perk'd</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #2563eb, #10b981);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { margin-bottom: 1rem; font-size: 1.5rem; }
+        .test-btn {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .primary { background: #10b981; color: white; }
+        .primary:hover { background: #059669; transform: translateY(-1px); }
+        .secondary { background: rgba(255,255,255,0.2); color: white; }
+        .secondary:hover { background: rgba(255,255,255,0.3); }
+        .result {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .success { background: #10b981; }
+        .error { background: #ef4444; }
+        .info { background: #3b82f6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Authentication Test</h1>
+        <p style="margin-bottom: 1rem; opacity: 0.9;">Final test with CSP completely disabled</p>
+        
+        <div id="result"></div>
+        
+        <button class="test-btn primary" onclick="testSupabaseConnection()">
+            Test Supabase Connection
+        </button>
+        
+        <button class="test-btn primary" onclick="attemptRealLogin()">
+            Test Real Login (robertmcveigh1977@gmail.com)
+        </button>
+        
+        <button class="test-btn secondary" onclick="testAuthPage()">
+            Go to Auth Page
+        </button>
+        
+        <button class="test-btn secondary" onclick="checkCSP()">
+            Check CSP Status
+        </button>
+    </div>
+
+    <script>
+        const result = document.getElementById('result');
+        
+        function showResult(message, type = 'info') {
+            result.innerHTML = `<div class="result ${type}">${message}</div>`;
+        }
+        
+        function testSupabaseConnection() {
+            showResult('Testing Supabase connection...', 'info');
+            
+            // Test if we can load Supabase script
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+            script.onload = () => {
+                showResult('✅ Supabase script loaded successfully!', 'success');
+            };
+            script.onerror = () => {
+                showResult('❌ Failed to load Supabase script (CSP blocking)', 'error');
+            };
+            document.head.appendChild(script);
+        }
+        
+        function attemptRealLogin() {
+            showResult('Attempting real Supabase login...', 'info');
+            
+            // This will test if CSP is actually disabled
+            const testScript = `
+                import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
+                
+                const supabase = createClient(
+                    'https://wegpfaogrrtnsqabmssc.supabase.co',
+                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlZ3BmYW9ncnJ0bnNxYWJtc3NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM0NjM0NzcsImV4cCI6MjA2OTAzOTQ3N30.YY3mQI4UfSGdqUlzUwV9kPfpZBKPvd9wRwCUNM8A-Po'
+                );
+                
+                console.log('Supabase client created:', supabase);
+            `;
+            
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.textContent = testScript;
+            
+            script.onload = () => {
+                showResult('✅ Real Supabase test passed!', 'success');
+            };
+            script.onerror = (e) => {
+                showResult('❌ Real Supabase test failed: ' + e.message, 'error');
+            };
+            
+            document.head.appendChild(script);
+        }
+        
+        function testAuthPage() {
+            showResult('Redirecting to auth page...', 'info');
+            setTimeout(() => {
+                window.location.href = '/auth';
+            }, 1000);
+        }
+        
+        function checkCSP() {
+            showResult('Checking CSP headers...', 'info');
+            
+            fetch(window.location.href)
+                .then(response => {
+                    const csp = response.headers.get('Content-Security-Policy');
+                    if (csp) {
+                        showResult(`CSP Found: ${csp.substring(0, 100)}...`, 'error');
+                    } else {
+                        showResult('✅ No CSP headers detected!', 'success');
+                    }
+                })
+                .catch(e => {
+                    showResult('❌ Failed to check CSP: ' + e.message, 'error');
+                });
+        }
+        
+        // Auto-run connection test on load
+        setTimeout(() => {
+            testSupabaseConnection();
+        }, 1000);
+    </script>
+</body>
+</html>

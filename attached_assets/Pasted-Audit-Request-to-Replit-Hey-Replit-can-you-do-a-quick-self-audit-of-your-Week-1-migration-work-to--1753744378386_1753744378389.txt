@@ -1,0 +1,72 @@
+Audit Request to Replit
+Hey Replit — can you do a quick self-audit of your Week 1 migration work to confirm that:
+
+No parts of the schema were rewritten or renamed to fit your preferred patterns (like userId instead of user_id)
+
+No architectural components were added that deviate from my original ZIP files (middleware layers, auth systems, folder structure, etc.)
+
+The utils/supabase-server.ts follows my intended auth logic exactly, without extra abstractions
+
+No business logic was changed, assumed, or “improved” in the base scaffolding
+
+I trust your work — but since this is my company, my code, my money, I want to triple-check that the foundation reflects my original architecture 100%.
+
+Appreciate you keeping this aligned. Let me know what you find!
+
+Let me know if you want this stored as a reusable QA instruction for future devs too.
+
+Want me to write a checklist format version they can literally copy-paste and confirm point by point?
+
+
+
+
+
+
+
+
+You said:
+yes
+
+
+ChatGPT said:
+Perfect. Here's a clean, checklist-style QA audit prompt you can give to Replit to review the Week 1 rebuild and ensure nothing was rewritten, renamed, or re-architected behind the scenes:
+
+🔍 Week 1 Architecture Integrity Audit – QA Checklist
+Hey Replit — before we move any further, please review your Week 1 migration work using the checklist below to ensure it strictly followed my original specs from the ZIP files:
+
+✅ SCHEMA INTEGRITY
+ Confirm no schema fields were renamed (e.g., user_id was not changed to userId, created_at was not renamed to timestamp, etc.)
+
+ Confirm no schema tables were restructured, dropped, or replaced with new abstractions
+
+ Confirm no extra fields were added to tables that weren’t in my provided schema (e.g., business_id, campus_id, etc. were not inserted unless approved)
+
+✅ AUTHENTICATION SETUP
+ Confirm the utils/supabase-server.ts file mirrors the auth logic from my ZIP, not your internal pattern
+
+ Confirm there are no extra middleware/auth wrappers added that conflict with Supabase JWT/session management
+
+✅ FOLDER STRUCTURE & ROUTING
+ Confirm Next.js 14 App Router is implemented as-is with no Express.js remnants
+
+ Confirm no custom routing/middleware chains were added without my approval
+
+✅ ORIGINAL LOGIC PRESERVATION
+ Confirm all core logic from my ZIP files (Phase 2–3 APIs) is untouched, including:
+
+6-hour cooldown timers
+
+Reward unlock logic
+
+Analytics filters and views
+
+Response formats
+
+✅ ENVIRONMENT & TOOLING
+ Confirm shadcn/ui, Tailwind, and TypeScript are set up without altering my component structure or UI architecture
+
+ Confirm no 3rd party packages were added unless explicitly approved
+
+Please go through this checklist and confirm that everything from Week 1 is 100% aligned with my original vision. I appreciate your hard work and attention to detail — just want to make sure the foundation reflects my architecture, not a re-interpretation.
+
+Let me know when the review is complete and if anything needs to be rolled back or adjusted. Thanks for sticking to the playbook. 🙏

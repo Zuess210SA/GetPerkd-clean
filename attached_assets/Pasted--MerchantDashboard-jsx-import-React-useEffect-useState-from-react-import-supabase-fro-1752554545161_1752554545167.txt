@@ -1,0 +1,98 @@
+// MerchantDashboard.jsx
+import React, { useEffect, useState } from 'react';
+import { supabase } from './supabaseClient';
+import { CSVLink } from 'react-csv';
+
+function MerchantDashboard({ merchant }) {
+  const [deals, setDeals] = useState([]);
+  const [stats, setStats] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      // 1️⃣ Fetch deals by merchant
+      const { data: deals, error: dealsError } = await supabase
+        .from('deals')
+        .select('*')
+        .eq('merchant_id', merchant.id);
+
+      if (dealsError) {
+        console.error('Failed to load deals:', dealsError);
+        return;
+      }
+
+      // 2️⃣ For each deal, get redemption count
+      const statsWithCounts = await Promise.all(
+        deals.map(async (deal) => {
+          const { count, error } = await supabase
+            .from('redemptions')
+            .select('*', { count: 'exact', head: true })
+            .eq('deal_id', deal.id);
+
+          return {
+            id: deal.id,
+            title: deal.title,
+            description: deal.description,
+            expiration_date: deal.expiration_date,
+            redemption_limit: deal.redemption_limit,
+            redemptions: count || 0,
+          };
+        })
+      );
+
+      setDeals(statsWithCounts);
+      setStats(statsWithCounts);
+      setLoading(false);
+    };
+
+    fetchStats();
+  }, [merchant.id]);
+
+  if (loading) return <p className="text-center mt-12">Loading deal stats...</p>;
+
+  return (
+    <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded shadow">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold">📊 Deal Performance</h2>
+        <CSVLink
+          data={stats}
+          filename={`perk'd-redemption-stats-${new Date().toISOString()}.csv`}
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        >
+          Export to CSV
+        </CSVLink>
+      </div>
+
+      <table className="w-full text-left border-t">
+        <thead>
+          <tr>
+            <th className="py-2">Title</th>
+            <th className="py-2">Description</th>
+            <th className="py-2">Expires</th>
+            <th className="py-2">Redemptions</th>
+            <th className="py-2">Limit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {deals.map((deal) => (
+            <tr key={deal.id} className="border-t">
+              <td className="py-2 font-semibold">{deal.title}</td>
+              <td className="py-2 text-sm text-gray-600">{deal.description}</td>
+              <td className="py-2">
+                {deal.expiration_date
+                  ? new Date(deal.expiration_date).toLocaleDateString()
+                  : '—'}
+              </td>
+              <td className="py-2 font-bold text-blue-600">{deal.redemptions}</td>
+              <td className="py-2">
+                {deal.redemption_limit !== null ? deal.redemption_limit : 'Unlimited'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default MerchantDashboard;

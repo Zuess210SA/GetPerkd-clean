@@ -1,0 +1,60 @@
+getperkd.co/:1 Refused to load the script 'https://replit.com/public/js/replit-dev-banner.js' because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.onesignal.com". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
+
+index.js:85 Refused to load the script 'https://api.onesignal.com/sync/066ad7b5-2b0c-462f-b8e2-cfa32d852d38/web?callback=__jp0' because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.onesignal.com". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
+
+t @ index.js:85
+index-CasfyBFS.js:56 Supabase URL: https://wegpfaogrrtnsqabmssc.supabase.co
+index-CasfyBFS.js:56 Supabase Key exists: true
+index-CasfyBFS.js:361 i18n initialized successfully
+index-CasfyBFS.js:361 Current language: en
+index-CasfyBFS.js:361 Available resources: Array(7)
+index-CasfyBFS.js:414 Initial session check: No session found
+index-CasfyBFS.js:414 Auth state change: INITIAL_SESSION No session
+feature_collector.js:23 using deprecated parameters for the initialization function; pass a single object instead
+M @ feature_collector.js:23
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+api/businesses/1/follow-status:1  Failed to load resource: the server responded with a status of 401 ()
+api/businesses/2/follow-status:1  Failed to load resource: the server responded with a status of 401 ()
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+index-CasfyBFS.js:402 Refused to create a worker from 'blob:https://getperkd.co/a0262771-9ba7-4256-b901-4d463e744390' because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.onesignal.com". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback.
+
+(anonymous) @ index-CasfyBFS.js:402
+index-CasfyBFS.js:402 🎊 Could not load worker SecurityError: Failed to construct 'Worker': Access to the script at 'blob:https://getperkd.co/a0262771-9ba7-4256-b901-4d463e744390' is denied by the document's Content Security Policy.
+    at index-CasfyBFS.js:402:10
+    at I (index-CasfyBFS.js:402:4729)
+    at H (index-CasfyBFS.js:402:6271)
+    at n.exports (index-CasfyBFS.js:402:7925)
+    at c (index-CasfyBFS.js:402:9711)
+    at d (index-CasfyBFS.js:402:9889)
+(anonymous) @ index-CasfyBFS.js:402
+index-CasfyBFS.js:414 Auth attempt: Object
+index-CasfyBFS.js:414 Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 User signed in successfully, refreshing navbar state
+index-CasfyBFS.js:414 Login result: Object
+ReplayCallsOnOneSignal.ts:15 Error: Timeout
+    at index.js:57:18
+processOneSignalDeferredArray @ ReplayCallsOnOneSignal.ts:15
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 User signed in successfully, refreshing navbar state
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully

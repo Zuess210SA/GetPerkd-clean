@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚨 EMERGENCY AUTH TEST - Get Perk'd</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .auth-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .title {
+            text-align: center;
+            color: #fbbf24; 
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .primary-btn {
+            background: #10b981;
+            color: white;
+        }
+        .primary-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+        .secondary-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        .secondary-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success {
+            background: #10b981;
+            color: white;
+        }
+        .error {
+            background: #ef4444;
+            color: white;
+        }
+        .info {
+            background: #3b82f6;
+            color: white;
+        }
+        .warning {
+            background: #f59e0b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="title">🚨 EMERGENCY AUTH BYPASS</div>
+        <div class="title">Get Perk'd Login Test</div>
+        
+        <div id="status" class="result info">
+            Initializing Supabase connection...
+        </div>
+
+        <form id="authForm">
+            <input type="email" id="email" placeholder="Email Address" value="robertmcveigh1977@gmail.com" required>
+            <input type="password" id="password" placeholder="Password" value="test123456" required>
+            <button type="submit" class="primary-btn">🚀 EMERGENCY LOGIN</button>
+        </form>
+
+        <div id="result"></div>
+        
+        <div style="margin-top: 20px;">
+            <button type="button" class="secondary-btn" onclick="testConnection()">🔍 Test Connection</button>
+            <button type="button" class="secondary-btn" onclick="createAccount()">📝 Create Account</button>
+            <button type="button" class="secondary-btn" onclick="checkSession()">👤 Check Session</button>
+        </div>
+        
+        <div style="margin-top: 20px; font-size: 12px; opacity: 0.8; text-align: center;">
+            This is a direct Supabase test bypassing all React routing issues
+        </div>
+    </div>
+
+    <script>
+        // Get environment variables from the main app
+        let supabase;
+        
+        // Initialize with environment variables
+        async function initSupabase() {
+            try {
+                // Try to get env vars from the main window if available
+                const response = await fetch('/api/config');
+                const config = await response.json();
+                
+                supabase = window.supabase.createClient(
+                    config.supabaseUrl || 'https://wegpfaogrrtnsqabmssc.supabase.co',
+                    config.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlZ3BmYW9ncnJ0bnNxYWJtc3NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0NTM3MTMsImV4cCI6MjA2ODAyOTcxM30.Mx3m3C5-NecTcXYg7ba6o7dAt4Uhm7YS9s9z5_-HqIs'
+                );
+                
+                document.getElementById('status').innerHTML = '✅ Supabase connection initialized';
+                document.getElementById('status').className = 'result success';
+                
+                // Auto-test connection
+                testConnection();
+                
+            } catch (error) {
+                // Fallback to hardcoded values
+                supabase = window.supabase.createClient(
+                    'https://wegpfaogrrtnsqabmssc.supabase.co',
+                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlZ3BmYW9ncnJ0bnNxYWJtc3NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0NTM3MTMsImV4cCI6MjA2ODAyOTcxM30.Mx3m3C5-NecTcXYg7ba6o7dAt4Uhm7YS9s9z5_-HqIs'
+                );
+                
+                document.getElementById('status').innerHTML = '⚠️ Using fallback Supabase config';
+                document.getElementById('status').className = 'result warning';
+            }
+        }
+        
+        // Test connection
+        async function testConnection() {
+            const result = document.getElementById('result');
+            result.innerHTML = '<div class="result info">Testing connection...</div>';
+            
+            try {
+                const { data, error } = await supabase.auth.getSession();
+                if (error) throw error;
+                
+                result.innerHTML = `
+                    <div class="result success">
+                        ✅ Connection successful!<br>
+                        Current session: ${data.session ? 'Active (' + data.session.user.email + ')' : 'None'}
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="result error">
+                        ❌ Connection failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Check current session
+        async function checkSession() {
+            const result = document.getElementById('result');
+            try {
+                const { data: { session }, error } = await supabase.auth.getSession();
+                if (error) throw error;
+                
+                if (session?.user) {
+                    result.innerHTML = `
+                        <div class="result success">
+                            👤 LOGGED IN: ${session.user.email}<br>
+                            <button onclick="window.open('http://localhost:5000/', '_blank')" class="primary-btn">
+                                Go to Dashboard
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `
+                        <div class="result warning">
+                            ⚠️ No active session
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="result error">
+                        ❌ Session check failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Create account
+        async function createAccount() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const result = document.getElementById('result');
+            
+            if (!email || !password) {
+                result.innerHTML = '<div class="result error">Please enter email and password</div>';
+                return;
+            }
+            
+            result.innerHTML = '<div class="result info">Creating account...</div>';
+            
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: { full_name: 'Robert McVeigh' }
+                    }
+                });
+                
+                if (error) throw error;
+                
+                result.innerHTML = `
+                    <div class="result success">
+                        📧 Account created! Check your email for verification.<br>
+                        User: ${data.user?.email || 'Created'}
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="result error">
+                        ❌ Account creation failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Handle login
+        document.getElementById('authForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const result = document.getElementById('result');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            submitBtn.textContent = '🔄 Signing in...';
+            submitBtn.disabled = true;
+            
+            try {
+                console.log('🚨 EMERGENCY LOGIN ATTEMPT:', email);
+                
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password,
+                });
+                
+                if (error) throw error;
+                
+                console.log('✅ EMERGENCY LOGIN SUCCESS:', data.user.email);
+                
+                result.innerHTML = `
+                    <div class="result success">
+                        🎉 LOGIN SUCCESSFUL!<br>
+                        User: ${data.user.email}<br>
+                        <button onclick="window.open('http://localhost:5000/', '_blank')" class="primary-btn">
+                            Go to Dashboard
+                        </button>
+                    </div>
+                `;
+                
+                // Auto-redirect after 3 seconds
+                setTimeout(() => {
+                    window.location.href = 'http://localhost:5000/';
+                }, 3000);
+                
+            } catch (error) {
+                console.error('❌ EMERGENCY LOGIN FAILED:', error);
+                result.innerHTML = `
+                    <div class="result error">
+                        ❌ Login failed: ${error.message}<br>
+                        <button onclick="createAccount()" class="secondary-btn">
+                            Try Creating Account Instead
+                        </button>
+                    </div>
+                `;
+            } finally {
+                submitBtn.textContent = '🚀 EMERGENCY LOGIN';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Initialize when page loads
+        window.addEventListener('load', initSupabase);
+    </script>
+</body>
+</html>

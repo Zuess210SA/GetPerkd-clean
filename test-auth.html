@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Test</title>
+</head>
+<body>
+    <h1>Get Perk'd Authentication Test</h1>
+    <div id="status">Testing...</div>
+    
+    <script>
+        async function testAuth() {
+            try {
+                // Test login with a known working user
+                const response = await fetch('/api/stats');
+                const statusDiv = document.getElementById('status');
+                
+                if (response.ok) {
+                    statusDiv.innerHTML = `<div style="color: green;">✅ API accessible - Status: ${response.status}</div>`;
+                } else {
+                    statusDiv.innerHTML = `<div style="color: red;">❌ API Error - Status: ${response.status}</div>`;
+                    const errorText = await response.text();
+                    statusDiv.innerHTML += `<div>Error: ${errorText}</div>`;
+                }
+            } catch (error) {
+                document.getElementById('status').innerHTML = `<div style="color: red;">❌ Network Error: ${error.message}</div>`;
+            }
+        }
+        
+        testAuth();
+    </script>
+</body>
+</html>

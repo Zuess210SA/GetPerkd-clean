@@ -1,0 +1,108 @@
+// InviteStaff.jsx
+import React, { useState } from 'react';
+import { supabase } from './supabaseClient';
+
+function InviteStaff({ merchantId }) {
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('staff');
+  const [permissions, setPermissions] = useState({
+    create: false,
+    stats: true,
+    redeem: true,
+  });
+  const [message, setMessage] = useState('');
+
+  const handleToggle = (perm) => {
+    setPermissions({ ...permissions, [perm]: !permissions[perm] });
+  };
+
+  const handleInvite = async (e) => {
+    e.preventDefault();
+    setMessage('');
+
+    const { error } = await supabase.from('merchant_users').insert([
+      {
+        merchant_id: merchantId,
+        email,
+        role,
+        permissions,
+      },
+    ]);
+
+    if (error) setMessage(`❌ Error: ${error.message}`);
+    else {
+      setMessage('✅ Invitation sent!');
+      setEmail('');
+      setRole('staff');
+      setPermissions({ create: false, stats: true, redeem: true });
+    }
+  };
+
+  return (
+    <div className="bg-white p-6 rounded shadow max-w-xl mx-auto mt-6">
+      <h2 className="text-xl font-bold mb-4">👥 Invite Team Member</h2>
+      <form onSubmit={handleInvite}>
+        <label className="block mb-1 font-medium">Email</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="w-full border px-3 py-2 rounded mb-3"
+        />
+
+        <label className="block mb-1 font-medium">Role</label>
+        <select
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          className="w-full border px-3 py-2 rounded mb-3"
+        >
+          <option value="staff">Staff</option>
+          <option value="manager">Manager</option>
+        </select>
+
+        <label className="block mb-2 font-medium">Permissions:</label>
+        <div className="mb-4 space-y-2">
+          <label className="block">
+            <input
+              type="checkbox"
+              checked={permissions.create}
+              onChange={() => handleToggle('create')}
+              className="mr-2"
+            />
+            Can Create Deals
+          </label>
+          <label className="block">
+            <input
+              type="checkbox"
+              checked={permissions.stats}
+              onChange={() => handleToggle('stats')}
+              className="mr-2"
+            />
+            Can View Stats
+          </label>
+          <label className="block">
+            <input
+              type="checkbox"
+              checked={permissions.redeem}
+              onChange={() => handleToggle('redeem')}
+              className="mr-2"
+            />
+            Can Redeem Deals
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Send Invite
+        </button>
+      </form>
+
+      {message && <p className="mt-4 text-center font-medium">{message}</p>}
+    </div>
+  );
+}
+
+export default InviteStaff;

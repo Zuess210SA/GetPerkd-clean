@@ -1,0 +1,100 @@
+{
+  "mexican_american_spanish_samples": {
+    "note": "These demonstrate the authentic regional slang that GPT-4o would generate for UTSA students using our San Antonio campus pack",
+    "deals": [
+      {
+        "business": "Tony's Pizza",
+        "deal_type": "20% off pizza",
+        "title_en": "20% off your favorite pizza at Tony's",
+        "title_es": "20% descuento en tu pizza favorita en Tony's 🍕",
+        "description_en": "Grab your favorite slice with student discount. Valid all day!",
+        "description_es": "Agarra tu slice favorito con descuento estudiantil. ¡Vámonos que está padrísimo! 🤙",
+        "terms_es": "Válido con tu student ID, no te lo pierdas bro",
+        "cultural_elements": ["slice", "vámonos", "padrísimo", "bro"]
+      },
+      {
+        "business": "Campus Coffee",
+        "deal_type": "Free drink with purchase",
+        "title_en": "Free drink with any food purchase",
+        "title_es": "Bebida gratis con cualquier comida 🤘",
+        "description_en": "Perfect for those late-night study sessions. Get energized!",
+        "description_es": "Perfecto para esas study sessions hasta tarde. ¡A darle que hay que estudiar! ☕",
+        "terms_es": "Con cualquier food purchase, órale",
+        "cultural_elements": ["study sessions", "a darle", "órale"]
+      },
+      {
+        "business": "Urban Threads",
+        "deal_type": "30% off clothing",
+        "title_en": "30% off all clothing for students",
+        "title_es": "30% off en toda la ropa para estudiantes 👕",
+        "description_en": "Fresh fits for campus. Level up your style game!",
+        "description_es": "Fresh fits para el campus. ¡A subir el level de tu style! 💯",
+        "terms_es": "Solo para students con ID válido",
+        "cultural_elements": ["fresh fits", "level", "style"]
+      },
+      {
+        "business": "Sabor Auténtico",
+        "deal_type": "25% off Mexican food",
+        "title_en": "25% off authentic Mexican cuisine",
+        "title_es": "25% descuento en comida auténtica mexicana 🌮",
+        "description_en": "Real flavors from home. Satisfy those cravings!",
+        "description_es": "Sabores reales como en casa. ¡Para esos antojos que te dan! 😋",
+        "terms_es": "Válido con student ID, ven y disfruta",
+        "cultural_elements": ["como en casa", "antojos", "ven y disfruta"]
+      },
+      {
+        "business": "Fresh Cuts SA",
+        "deal_type": "$5 off haircut",
+        "title_en": "$5 off professional haircuts",
+        "title_es": "$5 menos en tu corte profesional ✂️",
+        "description_en": "Look fresh for campus with professional styling",
+        "description_es": "Ve fresh para el campus con styling profesional. ¡Que te veas chingón! 💇‍♂️",
+        "terms_es": "Solo students, con appointment",
+        "cultural_elements": ["fresh", "styling", "chingón", "appointment"]
+      },
+      {
+        "business": "Club Fuego",
+        "deal_type": "Free cover charge",
+        "title_en": "Free cover with student ID",
+        "title_es": "Cover gratis con tu student ID 🔥",
+        "description_en": "The hottest spot near UTSA. Dance the night away!",
+        "description_es": "El spot más hot cerca de UTSA. ¡A bailar toda la night! 🕺💃",
+        "terms_es": "Solo weekends, con ID válido órale",
+        "cultural_elements": ["spot", "hot", "night", "weekends"]
+      },
+      {
+        "business": "Iron Temple Fitness",
+        "deal_type": "1 month free membership",
+        "title_en": "1 month free gym membership",
+        "title_es": "1 mes gratis de membresía del gym 💪",
+        "description_en": "Start your fitness journey with us. Get swole!",
+        "description_es": "Empieza tu fitness journey con nosotros. ¡A ponerse mamado! 🏋️‍♂️",
+        "terms_es": "Solo new members, con student ID",
+        "cultural_elements": ["fitness journey", "mamado", "new members"]
+      },
+      {
+        "business": "El Taco Loco",
+        "deal_type": "Buy 2 get 1 free tacos",
+        "title_en": "Buy 2 tacos, get 1 free",
+        "title_es": "Compra 2 tacos y llévate 1 gratis 🌮",
+        "description_en": "Satisfy that taco craving without breaking the bank",
+        "description_es": "Satisface ese antojo de tacos sin quebrar tu wallet 💰",
+        "terms_es": "Válido todo el día, no te aguites ven por ellos",
+        "cultural_elements": ["antojo", "wallet", "no te aguites"]
+      }
+    ],
+    "regional_slang_patterns": {
+      "spanglish_mixing": ["fresh fits", "study sessions", "fitness journey", "student ID"],
+      "mexican_american_terms": ["órale", "padrísimo", "chingón", "mamado", "no te aguites"],
+      "san_antonio_flavor": ["bro", "vámonos", "a darle", "como en casa"],
+      "gen_z_elements": ["💯", "level up", "spot", "hot", "fresh"],
+      "casual_tone": ["agarra", "ven", "a ponerse", "no te lo pierdas"]
+    },
+    "business_type_adaptations": {
+      "food": "More casual, hunger-focused ('antojos', 'sabores')",
+      "nightlife": "Energy-focused, party vibe ('hot', 'bailar', 'night')",
+      "fitness": "Motivational slang ('mamado', 'a ponerse')",
+      "retail": "Style-focused ('fresh fits', 'level up tu style')"
+    }
+  }
+}

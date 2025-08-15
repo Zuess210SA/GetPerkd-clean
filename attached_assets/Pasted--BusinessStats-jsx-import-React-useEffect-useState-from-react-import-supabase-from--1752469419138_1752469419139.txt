@@ -1,0 +1,95 @@
+// BusinessStats.jsx
+import React, { useEffect, useState } from 'react';
+import { supabase } from './supabaseClient';
+
+function BusinessStats({ user }) {
+  const [stats, setStats] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      // Get all deals created by this user
+      const { data: deals, error: dealError } = await supabase
+        .from('deals')
+        .select('*')
+        .eq('created_by', user.id);
+
+      if (dealError || !deals.length) {
+        setLoading(false);
+        return;
+      }
+
+      const dealIds = deals.map((d) => d.id);
+
+      // Get redemptions for those deals
+      const { data: redemptions, error: redemptError } = await supabase
+        .from('redemptions')
+        .select('*')
+        .in('deal_id', dealIds);
+
+      if (redemptError) {
+        setLoading(false);
+        return;
+      }
+
+      const statsMap = deals.map((deal) => {
+        const r = redemptions.filter((x) => x.deal_id === deal.id);
+        const selfCount = r.filter((x) => x.method === 'self').length;
+        const staffCount = r.filter((x) => x.method === 'staff').length;
+        const last = r.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+
+        return {
+          id: deal.id,
+          title: deal.title,
+          total: r.length,
+          self: selfCount,
+          staff: staffCount,
+          lastRedeemed: last?.created_at || null,
+        };
+      });
+
+      setStats(statsMap);
+      setLoading(false);
+    };
+
+    fetchStats();
+  }, [user.id]);
+
+  if (loading) return <p className="text-center">Loading business stats...</p>;
+
+  return (
+    <div className="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+      <h2 className="text-2xl font-bold mb-4 text-center">📊 Deal Performance</h2>
+      {stats.length === 0 ? (
+        <p className="text-center text-gray-600">No deals found.</p>
+      ) : (
+        <table className="w-full text-left text-sm">
+          <thead>
+            <tr className="border-b">
+              <th className="p-2">Deal</th>
+              <th className="p-2">Total</th>
+              <th className="p-2">Self</th>
+              <th className="p-2">Staff</th>
+              <th className="p-2">Last Redeemed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stats.map((s) => (
+              <tr key={s.id} className="border-b">
+                <td className="p-2 font-medium">{s.title}</td>
+                <td className="p-2">{s.total}</td>
+                <td className="p-2">{s.self}</td>
+                <td className="p-2">{s.staff}</td>
+                <td className="p-2">
+                  {s.lastRedeemed ? new Date(s.lastRedeemed).toLocaleString() : '—'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
+
+export default BusinessStats;

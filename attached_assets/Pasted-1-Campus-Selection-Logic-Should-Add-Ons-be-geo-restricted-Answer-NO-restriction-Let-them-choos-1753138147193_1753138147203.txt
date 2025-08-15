@@ -1,0 +1,71 @@
+1. Campus Selection Logic — Should Add-Ons be geo-restricted?
+Answer: NO restriction. Let them choose any campus.
+
+Why?
+
+A taco shop near UTSA might want Trinity + UIW for weekend bounce-back traffic
+
+Businesses might have remote locations (e.g., franchise owners)
+
+But we can suggest nearby campuses first with a tooltip:
+🧠 “Most businesses choose nearby campuses for better results.”
+
+✅ Action for Replit: Let users pick ANY campus, but order campus options by distance first (proximity bias).
+
+2. Billing Complexity — How do we handle mid-month campus additions?
+Answer: Pro-rate based on time left in billing cycle.
+
+That’s clean and fair. Stripe supports this natively.
+
+Example:
+
+Add a campus on Day 15 → $5 charge now
+
+Next month → full $10/month
+
+✅ Action for Replit: Use Stripe’s proration system. Show a tooltip on add-ons:
+💡 “You’ll only pay for the remaining days this month. Full pricing starts next cycle.”
+
+3. Upgrade Path — Suggest upgrading if they add 3+ campuses to Starter?
+Answer: YES. Make this an automatic upsell trigger.
+
+If someone is at:
+
+Starter ($49) + 3 add-ons = $79
+
+Show:
+🟨 “You're paying $79/month. Upgrade to Growth for $99 and unlock 6 campuses + built-in savings.”
+
+Also:
+
+Growth ($99) + 4 add-ons = $139 → nudge them to Premium ($149)
+
+✅ Action for Replit:
+
+Add upsell nudges when add-ons approach next tier price
+
+Make this appear as a smart alert in dashboard + checkout
+
+🚦 Final Greenlight Summary for Replit
+You can send them this directly or I’ll format it dev-style if you prefer:
+
+✅ Go ahead and implement this pricing system.
+🧠 Decisions:
+Campus add-ons: Allow ANY selection, no geo-restrictions
+
+Campus ordering: Sort by proximity for better UX
+
+Mid-month billing: Pro-rate using Stripe tools
+
+Smart upgrade path: If total payment nears next tier, auto-suggest upgrade with savings breakdown
+
+🛠 Keep:
+Tier locks + badges
+
+Add-on toggles for Starter/Growth
+
+Disable add-ons for Premium/Enterprise
+
+Tier enforcement on BusinessTargetingForm
+
+Pricing page demo logic

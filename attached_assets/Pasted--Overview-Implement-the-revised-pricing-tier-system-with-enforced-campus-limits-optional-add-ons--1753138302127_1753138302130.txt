@@ -1,0 +1,87 @@
+✅ Overview
+Implement the revised pricing tier system with enforced campus limits, optional add-ons, prorated billing, and smart upsell logic.
+
+📦 Tier Breakdown
+Tier	Price	Campus Access	Add-Ons Allowed
+Starter	$49/month	3 campuses	✅ Yes (+$10/campus)
+Growth	$99/month	6 campuses	✅ Yes (+$10/campus)
+Premium	$149/month	Up to 9 campuses (San Antonio)	❌ No add-ons
+Enterprise	$299/month	All 11 campuses + San Marcos + Austin	❌ No add-ons
+
+Add-on = $10/month per additional campus
+
+Add-ons available only for Starter and Growth
+
+Enterprise includes all current and future campuses automatically
+
+⚙️ Logic Implementation
+1. 🎯 Campus Selection
+Starter = max 3 campuses
+
+Growth = max 6 campuses
+
+Premium = max 9 campuses
+
+Enterprise = all campuses (11 in San Antonio + Texas State + UT Austin)
+
+Add-ons allow Starter/Growth users to expand past their base limits
+
+Implement this logic in BusinessTargetingForm and any related UI elements.
+
+2. 🔁 Add-On Logic
+Enabled only for Starter and Growth plans
+
+No geographic restriction on campus selection
+
+Order campus list by proximity first (from university database coordinates)
+
+$10/month per additional campus
+
+3. 💸 Mid-Month Campus Add-Ons
+Use Stripe proration logic
+
+Example: Adding a campus on Day 15 = $5 for remainder of cycle, $10 next month
+
+Tooltip on add-ons:
+“You’ll only pay for the remaining days this month. Full pricing starts next cycle.”
+
+4. 🚀 Smart Upgrade Suggestions
+Trigger upgrade prompt when add-on spend nears next tier price.
+
+Examples:
+
+Starter ($49) + 3 add-ons = $79 → suggest Growth ($99)
+
+Growth ($99) + 4 add-ons = $139 → suggest Premium ($149)
+
+UI Banner Example:
+💡 “You’re currently paying $79/month. Upgrade to Growth for $99 and unlock 6 campuses — and save money!”
+
+Trigger upsell prompts at:
+
+Checkout
+
+Business settings / billing page
+
+Campus selector when add-on cap is approached
+
+🧪 UI Requirements
+✅ Visual tier badges
+
+✅ Lock icon + grayed out unselectable campuses
+
+✅ Add-on toggle interface (Starter & Growth only)
+
+✅ Real-time campus counter
+
+✅ Tooltips for locked campuses:
+“Upgrade to unlock this campus or add it for $10/month.”
+
+✅ Final Notes
+Add-on logic must be tight to prevent over-selection
+
+Proration and smart upgrade nudges will boost MRR
+
+Enterprise should auto-include all current + future campuses
+
+Centralize logic for future expansion / tier customization

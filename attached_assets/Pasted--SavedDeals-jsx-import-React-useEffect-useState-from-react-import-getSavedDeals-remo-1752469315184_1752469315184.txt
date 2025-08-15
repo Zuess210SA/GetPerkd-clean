@@ -1,0 +1,64 @@
+// SavedDeals.jsx
+import React, { useEffect, useState } from 'react';
+import { getSavedDeals, removeSavedDeal } from './SaveDeal';
+import { supabase } from './supabaseClient';
+
+function SavedDeals({ user }) {
+  const [saved, setSaved] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSaved = async () => {
+      const { data: savedDeals } = await getSavedDeals(user.id);
+      const dealIds = savedDeals.map((d) => d.deal_id);
+      const { data: deals } = await supabase.from('deals').select('*').in('id', dealIds);
+
+      const merged = savedDeals.map((s) => {
+        const deal = deals.find((d) => d.id === s.deal_id);
+        return {
+          ...s,
+          title: deal?.title,
+          description: deal?.description,
+        };
+      });
+
+      setSaved(merged);
+      setLoading(false);
+    };
+
+    fetchSaved();
+  }, [user.id]);
+
+  const handleRemove = async (dealId) => {
+    await removeSavedDeal(user.id, dealId);
+    setSaved(saved.filter((d) => d.deal_id !== dealId));
+  };
+
+  if (loading) return <p className="text-center">Loading saved deals...</p>;
+
+  return (
+    <div className="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+      <h2 className="text-2xl font-bold mb-4 text-center">❤️ Saved Deals</h2>
+      {saved.length === 0 ? (
+        <p className="text-center text-gray-600">No deals saved yet.</p>
+      ) : (
+        <ul className="space-y-4">
+          {saved.map((d) => (
+            <li key={d.id} className="border-b pb-2">
+              <p className="font-semibold">{d.title}</p>
+              <p className="text-sm text-gray-600">{d.description}</p>
+              <button
+                className="mt-2 text-sm text-red-600 underline"
+                onClick={() => handleRemove(d.deal_id)}
+              >
+                Remove from Saved
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default SavedDeals;

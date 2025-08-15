@@ -1,0 +1,144 @@
+🧱 Get Perk’d: Unified Multi-Role PWA Architecture
+✅ Goals:
+Single codebase, fast performance
+
+Role-based route protection
+
+Modular components per user group
+
+Lazy loading + clean UI/UX separation
+
+📁 Folder Structure (Replit-Ready)
+bash
+Copy
+Edit
+/src
+├── components/
+│   ├── common/                  # Reusable UI (buttons, modals, toasts)
+│   ├── student/                 # QR cards, challenge UI, reward shop
+│   ├── merchant/                # Deal editor, redemption stats
+│   ├── franchisee/              # Territory analytics, onboarding tools
+│   └── admin/                   # Master dashboards, user controls
+│
+├── context/
+│   ├── AuthContext.tsx          # Global auth + user data
+│   └── RoleContext.tsx          # Role-based access control
+│
+├── layouts/
+│   ├── StudentLayout.tsx
+│   ├── MerchantLayout.tsx
+│   ├── FranchiseeLayout.tsx
+│   ├── AdminLayout.tsx
+│   └── AuthLayout.tsx           # Login/signup wrapper
+│
+├── pages/
+│   ├── login.tsx
+│   ├── register.tsx
+│
+│   ├── student/
+│   │   ├── index.tsx            # Dashboard
+│   │   ├── deals.tsx
+│   │   ├── rewards.tsx
+│   │   ├── challenges.tsx
+│   │   ├── leaderboard.tsx
+│   │   └── profile.tsx
+│
+│   ├── merchant/
+│   │   ├── index.tsx
+│   │   ├── create-deal.tsx
+│   │   ├── manage-deals.tsx
+│   │   ├── staff.tsx
+│   │   └── feedback.tsx
+│
+│   ├── franchisee/
+│   │   ├── index.tsx
+│   │   ├── analytics.tsx
+│   │   ├── tools.tsx
+│   │   ├── ambassador-management.tsx
+│   │   └── crm.tsx
+│
+│   ├── admin/
+│   │   ├── index.tsx
+│   │   ├── manage-users.tsx
+│   │   ├── system-health.tsx
+│   │   ├── billing.tsx
+│   │   └── fraud.tsx
+│
+├── routes/
+│   └── PrivateRoute.tsx         # Protects role-specific routes
+│
+├── utils/
+│   ├── api.ts                   # Supabase / fetch helpers
+│   └── constants.ts             # Campus roles, categories, etc
+│
+├── i18n/
+│   ├── en.json
+│   ├── es.json
+│   ├── regional/
+│   │   ├── utsa.json
+│   │   ├── txstate.json
+│   │   ├── alamo.json
+│   │   └── utaustin.json
+│   └── i18nConfig.ts
+│
+└── App.tsx
+🔐 PrivateRoute.tsx (Role-Based Route Guard)
+tsx
+Copy
+Edit
+import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+
+export default function PrivateRoute({ children, allowedRoles }) {
+  const { user } = useContext(AuthContext);
+  if (!user?.isAuthenticated) return <Navigate to="/login" />;
+  if (!allowedRoles.includes(user.role)) return <Navigate to={`/${user.role}`} />;
+  return children;
+}
+🧠 Role Mapping Guide
+Role	Homepage	Folder	Layout File
+student	/student	/student/	StudentLayout.tsx
+merchant	/merchant	/merchant/	MerchantLayout.tsx
+franchisee	/franchisee	/franchisee/	FranchiseeLayout.tsx
+admin	/admin	/admin/	AdminLayout.tsx
+
+🚦 Dynamic Navbar / Menu Logic
+tsx
+Copy
+Edit
+const renderNav = (role) => {
+  switch (role) {
+    case 'student': return <StudentNavbar />;
+    case 'merchant': return <MerchantNavbar />;
+    case 'franchisee': return <FranchiseeNavbar />;
+    case 'admin': return <AdminNavbar />;
+    default: return null;
+  }
+};
+🚀 Performance Enhancements
+Technique	Purpose
+React.lazy() + Suspense	Split code by role + layout
+CDN Caching	Speed for regional campus users
+LocalStorage for i18n	Remember user’s language/campus
+Static Routes per Role	Clean URLs and faster page loads
+
+🧩 Optional Enhancements (Want these added?)
+✅ Per-role custom error pages (403 Unauthorized)
+
+✅ Role-based analytics module
+
+✅ Route prefetching for likely destinations
+
+✅ Campus-specific theming based on subdomain or login
+
+🎯 Ready to Implement?
+Just say the word and I’ll prep:
+
+✅ Starter layout files
+
+✅ PrivateRoute logic
+
+✅ Folder structure in Replit
+
+✅ Setup QA for routing, role flow, and i18n together

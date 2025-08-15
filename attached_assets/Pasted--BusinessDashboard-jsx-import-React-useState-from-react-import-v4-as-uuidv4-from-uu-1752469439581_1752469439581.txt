@@ -1,0 +1,90 @@
+// BusinessDashboard.jsx
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import BusinessStats from './BusinessStats';
+
+function BusinessDashboard({ onNewDeal, user }) {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [redemptionType, setRedemptionType] = useState('self');
+  const [view, setView] = useState('create');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newDeal = {
+      id: uuidv4(),
+      title,
+      description,
+      redemptionType,
+      created_by: user.id,
+    };
+    onNewDeal(newDeal);
+    setTitle('');
+    setDescription('');
+    setRedemptionType('self');
+  };
+
+  return (
+    <div className="max-w-xl mx-auto bg-white p-6 rounded shadow-md">
+      <div className="flex justify-center mb-4 space-x-4">
+        <button
+          onClick={() => setView('create')}
+          className={`px-4 py-2 rounded ${view === 'create' ? 'bg-blue-600 text-white' : 'bg-white border'}`}
+        >
+          Create Deal
+        </button>
+        <button
+          onClick={() => setView('stats')}
+          className={`px-4 py-2 rounded ${view === 'stats' ? 'bg-blue-600 text-white' : 'bg-white border'}`}
+        >
+          Deal Stats
+        </button>
+      </div>
+
+      {view === 'create' ? (
+        <>
+          <h2 className="text-2xl font-bold mb-4">📋 Create a New Deal</h2>
+          <form onSubmit={handleSubmit}>
+            <label className="block mb-2 font-medium">Title:</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full border rounded px-3 py-2 mb-4"
+              required
+            />
+
+            <label className="block mb-2 font-medium">Description:</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full border rounded px-3 py-2 mb-4"
+              required
+            ></textarea>
+
+            <label className="block mb-2 font-medium">Redemption Type:</label>
+            <select
+              value={redemptionType}
+              onChange={(e) => setRedemptionType(e.target.value)}
+              className="w-full border rounded px-3 py-2 mb-4"
+            >
+              <option value="self">Self Redeem</option>
+              <option value="staff">Staff Code</option>
+            </select>
+
+            <button
+              type="submit"
+              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            >
+              Submit Deal
+            </button>
+          </form>
+        </>
+      ) : (
+        <BusinessStats user={user} />
+      )}
+    </div>
+  );
+}
+
+export default BusinessDashboard

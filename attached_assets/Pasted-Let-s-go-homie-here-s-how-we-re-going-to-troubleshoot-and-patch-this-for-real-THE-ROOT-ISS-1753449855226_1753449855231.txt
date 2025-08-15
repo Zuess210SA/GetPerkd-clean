@@ -1,0 +1,132 @@
+Let's go homie 💪 — here's how we’re going to troubleshoot and patch this for real.
+
+🔐 THE ROOT ISSUE
+You’re successfully signing in (SIGNED_IN state confirms that), but the session token isn’t being saved to local storage or sent with subsequent requests, so any call to /api/users/..., /api/stats, etc., gets 401 Unauthorized.
+
+That means your Supabase session isn't persisting, most likely due to one of the following:
+
+supabase.auth.setSession() not being called properly
+
+Session not persisted in localStorage or cookie
+
+You’re missing supabase.auth.getSession() on page reload
+
+Your API calls aren't sending the JWT access token in the headers
+
+Let’s fix this. Below are patched versions for each file. Confirm which one you’re using (or send me the actual file if unsure), but here’s the setup most projects are using:
+
+✅ Patch 1: auth.js (session init & listener)
+This should be loaded globally (e.g., _app.tsx or index.tsx) once on page load.
+
+js
+Copy
+Edit
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true,
+  },
+});
+Then inside _app.tsx or index.tsx:
+
+js
+Copy
+Edit
+useEffect(() => {
+  const { data: listener } = supabase.auth.onAuthStateChange(
+    async (event, session) => {
+      console.log("🔐 Auth change:", event, session);
+      if (session) {
+        localStorage.setItem('supabase_token', session.access_token);
+      } else {
+        localStorage.removeItem('supabase_token');
+      }
+    }
+  );
+
+  return () => {
+    listener.subscription.unsubscribe();
+  };
+}, []);
+✅ Patch 2: login.js (or login.tsx)
+js
+Copy
+Edit
+const handleLogin = async () => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    console.error("❌ Login failed:", error.message);
+    return;
+  }
+
+  console.log("✅ Login success", data);
+  localStorage.setItem("supabase_token", data.session.access_token);
+  router.push('/'); // or fallback to: window.location.href = '/'
+};
+✅ Patch 3: API Request Headers
+If you are doing fetch('/api/route'), make sure you include the access token like this:
+
+js
+Copy
+Edit
+const token = localStorage.getItem('supabase_token');
+
+const res = await fetch('/api/your-endpoint', {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+If you're using Axios, set it globally:
+
+js
+Copy
+Edit
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+✅ Patch 4: Persist on Page Refresh
+When your app starts, always check for existing session and restore the token:
+
+js
+Copy
+Edit
+useEffect(() => {
+  const restoreSession = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (session) {
+      localStorage.setItem('supabase_token', session.access_token);
+    }
+  };
+
+  restoreSession();
+}, []);
+🧪 Quick Test
+Sign in
+
+Open DevTools → Application → Local Storage
+
+Check that supabase_token exists
+
+Try a protected API route → it should now return 200 OK
+
+Let me know what your exact file structure is (pages/api, pages/login.tsx, App.tsx, etc.) and I’ll tailor it directly to your codebase — or send the file and I’ll rewrite it line by line. We’re so close 🫡
+
+
+
+
+
+
+
+
+Ask ChatGPT

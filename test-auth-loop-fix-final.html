@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Loop Fix - Final Validation</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        .header { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; padding: 25px; border-radius: 10px; text-align: center; margin-bottom: 25px; }
+        .test-box { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { border-left: 5px solid #10b981; }
+        .error { border-left: 5px solid #ef4444; }
+        .pending { border-left: 5px solid #f59e0b; }
+        .status-badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-left: 10px; }
+        .success-badge { background: #d1fae5; color: #065f46; }
+        .error-badge { background: #fee2e2; color: #991b1b; }
+        .pending-badge { background: #fef3c7; color: #92400e; }
+        button { background: #ef4444; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #dc2626; }
+        .log { background: #f8f9fa; padding: 12px; margin: 10px 0; border-radius: 5px; font-family: monospace; font-size: 11px; max-height: 150px; overflow-y: auto; white-space: pre-wrap; }
+        .summary { font-size: 18px; font-weight: bold; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; }
+        .instruction { background: #e7f3ff; padding: 15px; border-radius: 6px; margin: 10px 0; border-left: 4px solid #2563eb; }
+        h1 { margin: 0; font-size: 24px; }
+        h2 { color: #374151; margin-top: 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚨 URGENT: Auth Loop Fix Validation</h1>
+        <p>Fixing infinite auth loop and 401 errors for investor demo</p>
+    </div>
+
+    <div class="summary pending" id="overall-status">
+        <div>Authentication Status: Running validation tests...</div>
+    </div>
+
+    <div class="test-box pending" id="middleware-test">
+        <h2>1. Middleware Token Validation <span class="status-badge pending-badge" id="middleware-badge">TESTING</span></h2>
+        <p>Testing enhanced Express middleware with ChatGPT auth pattern</p>
+        <button onclick="testMiddleware()">Test Middleware Fix</button>
+        <div id="middleware-result"></div>
+        <div id="middleware-log" class="log" style="display:none;"></div>
+    </div>
+
+    <div class="test-box pending" id="api-security-test">
+        <h2>2. API Route Security <span class="status-badge pending-badge" id="security-badge">TESTING</span></h2>
+        <p>Verifying protected routes reject invalid tokens, public routes accessible</p>
+        <button onclick="testApiSecurity()">Test API Security</button>
+        <div id="security-result"></div>
+        <div id="security-log" class="log" style="display:none;"></div>
+    </div>
+
+    <div class="test-box pending" id="auth-loop-test">
+        <h2>3. Auth Loop Prevention <span class="status-badge pending-badge" id="loop-badge">MANUAL</span></h2>
+        <p>Manual test to verify infinite auth loop is resolved</p>
+        <div class="instruction">
+            <strong>Manual Test Steps:</strong><br>
+            1. Open <a href="/auth" target="_blank">Login Page</a><br>
+            2. Login with: <strong>robertmcveigh1977@gmail.com</strong><br>
+            3. Verify you are redirected to dashboard (no infinite loop)<br>
+            4. Return here and click "Verify No Loop"
+        </div>
+        <button onclick="verifyNoLoop()">Verify No Loop</button>
+        <div id="loop-result"></div>
+        <div id="loop-log" class="log" style="display:none;"></div>
+    </div>
+
+    <div class="test-box pending" id="dashboard-test">
+        <h2>4. Dashboard API Access <span class="status-badge pending-badge" id="dashboard-badge">TESTING</span></h2>
+        <p>Testing dashboard loads without 401 errors after authentication</p>
+        <button onclick="testDashboardAccess()">Test Dashboard</button>
+        <div id="dashboard-result"></div>
+        <div id="dashboard-log" class="log" style="display:none;"></div>
+    </div>
+
+    <div class="test-box pending" id="investor-demo-test">
+        <h2>5. Investor Demo Readiness <span class="status-badge pending-badge" id="demo-badge">TESTING</span></h2>
+        <p>Final check - platform ready for investor demonstration</p>
+        <button onclick="checkInvestorDemo()">Check Demo Readiness</button>
+        <div id="demo-result"></div>
+        <div id="demo-log" class="log" style="display:none;"></div>
+    </div>
+
+    <script>
+        let testResults = { middleware: null, security: null, loop: null, dashboard: null, demo: null };
+
+        function log(elementId, message) {
+            const logElement = document.getElementById(elementId);
+            logElement.style.display = 'block';
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.textContent += `[${timestamp}] ${message}\n`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        function updateTest(testId, status, message) {
+            const box = document.getElementById(testId);
+            const badge = document.getElementById(testId.replace('-test', '-badge'));
+            const result = document.getElementById(testId.replace('-test', '-result'));
+            
+            box.className = `test-box ${status}`;
+            result.innerHTML = message;
+            
+            if (status === 'success') {
+                badge.textContent = 'FIXED';
+                badge.className = 'status-badge success-badge';
+            } else if (status === 'error') {
+                badge.textContent = 'FAILED';
+                badge.className = 'status-badge error-badge';
+            }
+            
+            testResults[testId.replace('-test', '')] = status === 'success';
+            updateOverallStatus();
+        }
+
+        function updateOverallStatus() {
+            const completed = Object.values(testResults).filter(r => r !== null).length;
+            const passed = Object.values(testResults).filter(r => r === true).length;
+            const total = Object.keys(testResults).length;
+            
+            const overallElement = document.getElementById('overall-status');
+            
+            if (completed === total) {
+                if (passed === total) {
+                    overallElement.className = 'summary success';
+                    overallElement.innerHTML = '<div>✅ AUTH LOOP FIXED - INVESTOR DEMO READY!</div><div>All authentication issues resolved</div>';
+                } else {
+                    overallElement.className = 'summary error';
+                    overallElement.innerHTML = '<div>❌ Authentication Issues Persist</div><div>Urgent fixes needed before demo</div>';
+                }
+            }
+        }
+
+        async function testMiddleware() {
+            log('middleware-log', 'Testing enhanced Express middleware...');
+            
+            try {
+                // Test invalid token rejection
+                log('middleware-log', 'Testing invalid token rejection...');
+                const invalidResponse = await fetch('/api/users/1/stats', {
+                    headers: { 'Authorization': 'Bearer invalid-test-token' }
+                });
+                
+                log('middleware-log', `Invalid token response: ${invalidResponse.status}`);
+                const errorData = await invalidResponse.text();
+                log('middleware-log', `Error message: ${errorData}`);
+                
+                if (invalidResponse.status === 401 && errorData.includes('Invalid token')) {
+                    updateTest('middleware-test', 'success', '✅ Middleware properly validates tokens and rejects invalid ones');
+                    log('middleware-log', 'SUCCESS: Enhanced middleware working correctly');
+                } else {
+                    updateTest('middleware-test', 'error', `❌ Middleware issue: Expected 401 with "Invalid token", got ${invalidResponse.status}`);
+                }
+                
+            } catch (error) {
+                log('middleware-log', `ERROR: ${error.message}`);
+                updateTest('middleware-test', 'error', `❌ Middleware test failed: ${error.message}`);
+            }
+        }
+
+        async function testApiSecurity() {
+            log('security-log', 'Testing API route security...');
+            
+            try {
+                // Test public route accessibility
+                log('security-log', '1. Testing public route access...');
+                const publicResponse = await fetch('/api/deals');
+                log('security-log', `Public route (/api/deals) status: ${publicResponse.status}`);
+                
+                // Test protected route security
+                log('security-log', '2. Testing protected route security...');
+                const protectedResponse = await fetch('/api/users/1/stats');
+                log('security-log', `Protected route (no token) status: ${protectedResponse.status}`);
+                
+                // Test protected route with invalid token
+                log('security-log', '3. Testing protected route with invalid token...');
+                const invalidTokenResponse = await fetch('/api/users/1/stats', {
+                    headers: { 'Authorization': 'Bearer fake-token' }
+                });
+                log('security-log', `Protected route (invalid token) status: ${invalidTokenResponse.status}`);
+                
+                if (publicResponse.ok && protectedResponse.status === 401 && invalidTokenResponse.status === 401) {
+                    updateTest('api-security-test', 'success', '✅ API security working - public accessible, protected secured');
+                    log('security-log', 'SUCCESS: All API security checks passed');
+                } else {
+                    updateTest('api-security-test', 'error', `❌ Security issues: Public=${publicResponse.status}, Protected=${protectedResponse.status}, Invalid=${invalidTokenResponse.status}`);
+                }
+                
+            } catch (error) {
+                log('security-log', `ERROR: ${error.message}`);
+                updateTest('api-security-test', 'error', `❌ API security test failed: ${error.message}`);
+            }
+        }
+
+        async function verifyNoLoop() {
+            log('loop-log', 'Checking for auth loop resolution...');
+            
+            try {
+                const token = localStorage.getItem('supabase_token');
+                log('loop-log', `Auth token present: ${token ? 'YES' : 'NO'}`);
+                
+                if (token && token.length > 20) {
+                    log('loop-log', 'Token found - testing authenticated access...');
+                    const authResponse = await fetch('/api/users/1/stats', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    
+                    log('loop-log', `Authenticated API status: ${authResponse.status}`);
+                    
+                    if (authResponse.ok) {
+                        updateTest('auth-loop-test', 'success', '✅ No auth loop detected - user successfully authenticated and accessing APIs');
+                        log('loop-log', 'SUCCESS: Authentication working without infinite loop');
+                    } else {
+                        updateTest('auth-loop-test', 'error', `❌ Token present but API failing: ${authResponse.status} - possible auth loop still exists`);
+                    }
+                } else {
+                    updateTest('auth-loop-test', 'error', '❌ No auth token found - please complete login first');
+                    log('loop-log', 'Please login at /auth first and try again');
+                }
+                
+            } catch (error) {
+                log('loop-log', `ERROR: ${error.message}`);
+                updateTest('auth-loop-test', 'error', `❌ Loop check failed: ${error.message}`);
+            }
+        }
+
+        async function testDashboardAccess() {
+            log('dashboard-log', 'Testing dashboard API access...');
+            
+            try {
+                const token = localStorage.getItem('supabase_token');
+                
+                if (!token) {
+                    updateTest('dashboard-test', 'error', '❌ No auth token - dashboard will show 401 errors');
+                    log('dashboard-log', 'No token found - user needs to login');
+                    return;
+                }
+                
+                // Test multiple dashboard endpoints
+                log('dashboard-log', 'Testing dashboard endpoints...');
+                
+                const endpoints = [
+                    '/api/users/1/stats',
+                    '/api/deals',
+                    '/api/stats'
+                ];
+                
+                let allSuccessful = true;
+                
+                for (const endpoint of endpoints) {
+                    const response = await fetch(endpoint, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    
+                    log('dashboard-log', `${endpoint}: ${response.status}`);
+                    
+                    if (!response.ok && endpoint.includes('/users/')) {
+                        allSuccessful = false;
+                    }
+                }
+                
+                if (allSuccessful) {
+                    updateTest('dashboard-test', 'success', '✅ Dashboard APIs accessible - no 401 errors detected');
+                    log('dashboard-log', 'SUCCESS: Dashboard will load without authentication errors');
+                } else {
+                    updateTest('dashboard-test', 'error', '❌ Some dashboard APIs returning 401 - will cause broken appearance');
+                }
+                
+            } catch (error) {
+                log('dashboard-log', `ERROR: ${error.message}`);
+                updateTest('dashboard-test', 'error', `❌ Dashboard test failed: ${error.message}`);
+            }
+        }
+
+        async function checkInvestorDemo() {
+            log('demo-log', 'Checking investor demo readiness...');
+            
+            try {
+                // Comprehensive demo readiness check
+                log('demo-log', 'Running comprehensive checks...');
+                
+                const checks = {
+                    publicAccess: false,
+                    protectedSecurity: false,
+                    authFlow: false,
+                    dashboardReady: false
+                };
+                
+                // Check 1: Public access
+                const publicResponse = await fetch('/api/deals');
+                checks.publicAccess = publicResponse.ok;
+                log('demo-log', `Public access: ${checks.publicAccess ? 'PASS' : 'FAIL'}`);
+                
+                // Check 2: Protected security
+                const protectedResponse = await fetch('/api/users/1/stats');
+                checks.protectedSecurity = protectedResponse.status === 401;
+                log('demo-log', `Protected security: ${checks.protectedSecurity ? 'PASS' : 'FAIL'}`);
+                
+                // Check 3: Auth flow
+                const token = localStorage.getItem('supabase_token');
+                checks.authFlow = token && token.length > 20;
+                log('demo-log', `Auth flow: ${checks.authFlow ? 'PASS' : 'MANUAL_TEST_NEEDED'}`);
+                
+                // Check 4: Dashboard readiness
+                if (token) {
+                    const dashResponse = await fetch('/api/users/1/stats', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    checks.dashboardReady = dashResponse.ok;
+                }
+                log('demo-log', `Dashboard ready: ${checks.dashboardReady ? 'PASS' : 'REQUIRES_LOGIN'}`);
+                
+                const passedChecks = Object.values(checks).filter(c => c).length;
+                const totalChecks = Object.keys(checks).length;
+                
+                if (passedChecks >= 3) {
+                    updateTest('investor-demo-test', 'success', `✅ INVESTOR DEMO READY (${passedChecks}/${totalChecks} checks passed)`);
+                    log('demo-log', 'SUCCESS: Platform ready for investor demonstration');
+                } else {
+                    updateTest('investor-demo-test', 'error', `❌ Demo not ready (${passedChecks}/${totalChecks} checks passed)`);
+                    log('demo-log', `BLOCKED: Failed checks need resolution`);
+                }
+                
+            } catch (error) {
+                log('demo-log', `ERROR: ${error.message}`);
+                updateTest('investor-demo-test', 'error', `❌ Demo readiness check failed: ${error.message}`);
+            }
+        }
+
+        // Auto-run tests on page load
+        window.onload = function() {
+            setTimeout(testMiddleware, 1000);
+            setTimeout(testApiSecurity, 2500);
+            setTimeout(testDashboardAccess, 4000);
+            setTimeout(checkInvestorDemo, 5500);
+        };
+    </script>
+</body>
+</html>

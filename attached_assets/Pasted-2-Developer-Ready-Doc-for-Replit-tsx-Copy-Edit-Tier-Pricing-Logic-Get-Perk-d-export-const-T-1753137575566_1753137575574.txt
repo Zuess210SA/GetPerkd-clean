@@ -1,0 +1,91 @@
+2. Developer-Ready Doc for Replit
+tsx
+Copy
+Edit
+// 📦 Tier Pricing Logic – Get Perk’d
+export const TIERS = [
+  {
+    name: "Starter",
+    price: 49,
+    includedCampuses: 3,
+    addOnEligible: true,
+  },
+  {
+    name: "Growth",
+    price: 99,
+    includedCampuses: 6,
+    addOnEligible: true,
+  },
+  {
+    name: "Premium",
+    price: 149,
+    includedCampuses: 9,
+    addOnEligible: false,
+  },
+  {
+    name: "Enterprise",
+    price: 299,
+    includedCampuses: "all",
+    includes: ["San Antonio", "San Marcos", "Austin"],
+    addOnEligible: false,
+  },
+];
+
+export const CAMPUS_ADD_ON_PRICE = 10;
+
+export const TIER_UI = {
+  badges: true,
+  grayOutUnavailable: true,
+  upgradeTooltips: true,
+  tierSelectorVisible: true,
+  modalsEnabled: true,
+};
+Backend logic notes for Replit:
+
+Starter + Growth should expose a $10/campus add-on system with live campus count tracking
+
+Premium and Enterprise tiers disable add-ons and unlock their max limits
+
+Admin override allowed for special campus bundles (if needed in the future)
+
+✅ 3. UI Copy for Tiers + Tooltips + Upgrade Banners
+🎨 Tier Cards
+Starter – $49/mo
+✅ Access 3 campuses
+🚀 Great for local businesses
+💡 Add more for $10/month
+
+Growth – $99/mo
+✅ Access 6 campuses
+📍 Includes broader reach
+💡 Add more for $10/month
+
+Premium – $149/mo
+✅ Access up to 9 campuses
+🌆 Full San Antonio access
+🚫 Add-ons not available
+
+Enterprise – $299/mo
+✅ All 11 campuses + TX State + UT Austin
+🌎 Statewide targeting unlocked
+🚀 Best for regional brands
+
+🛎 Tooltips
+“You’ve hit your campus limit!”
+Upgrade or add more campuses for $10/month.
+
+“Premium required for full San Antonio access.”
+Upgrade to unlock all 9 campuses in your city.
+
+“Enterprise unlocks statewide reach.”
+Reach 206K+ students across 3 major cities.
+
+🧠 Upgrade Banners
+“Maximize Your Reach”
+Businesses on Growth plan see 3x more engagement on 6+ campuses.
+
+“Ready to go statewide?”
+Enterprise unlocks every major university in Texas we support.
+
+“Starter Plan Filling Fast”
+Most merchants upgrade within 2 weeks — don’t miss your local advantage.

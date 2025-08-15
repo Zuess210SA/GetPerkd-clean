@@ -1,0 +1,9 @@
+Section,File/Folder,Purpose,Action
+🔐 Authentication & Role Logic,"/context/AuthContext.tsx, /routes/PrivateRoute.tsx","Manage user auth state, enforce role-based route access","Implement global auth context, add role-protected routing logic"
+🧱 Folder Structure Setup,"/pages/, /components/, /layouts/","Organize role-based pages, reusable components, and layouts","Create subfolders for student, merchant, franchisee, admin"
+🎨 Layouts Per Role,"/layouts/StudentLayout.tsx, MerchantLayout.tsx, etc.","Isolate navbars, sidebars, and wrappers per user type",Each layout wraps its role’s pages with shared UI
+📄 Pages & Routes,"/pages/student/, /pages/merchant/, etc.","Dedicated dashboard, tools, and pages per user type","Build index.tsx + key pages (deals, profile, analytics...)"
+🧩 Common UI Components,/components/common/,"Centralize buttons, modals, loaders for reuse",Refactor shared UI from role components here
+🌐 i18n + Campus Localization,/i18n/,Provide regional translation + slang support,Implement i18nConfig.ts + .json files per locale
+🚦 Navigation Logic,/components/navbars/,Render menu based on user role,Switch navbars dynamically with user.role
+⚡ Performance Optimization,N/A (core logic),Improve load times and UX,"Add lazy loading, localStorage caching, code splitting"

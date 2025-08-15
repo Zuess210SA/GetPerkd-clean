@@ -1,0 +1,90 @@
+🛠️ Get Perk’d – Final Campus Pricing System Implementation (v3.0)
+✅ Overview
+Implement the revised pricing tier system with enforced campus limits, optional add-ons, prorated billing, and smart upsell logic.
+
+📦 Tier Breakdown
+Tier	Price	Campus Access	Add-Ons Allowed
+Starter	$49/month	3 campuses	✅ Yes (+$10/campus)
+Growth	$99/month	6 campuses	✅ Yes (+$10/campus)
+Premium	$149/month	Up to 9 campuses	❌ No add-ons
+Enterprise	$299/month	All 11 campuses + San Marcos + Austin	❌ No add-ons
+
+Add-on = $10/month per additional campus
+
+Add-ons available only for Starter and Growth
+
+Enterprise includes all current and future campuses automatically
+
+⚙️ Logic Implementation
+1. 🎯 Campus Selection
+Starter = max 3 campuses
+
+Growth = max 6 campuses
+
+Premium = max 9 campuses
+
+Enterprise = all campuses (11 San Antonio + 2 citywide)
+
+Add-ons allow businesses on Starter/Growth to unlock additional campuses beyond base limit
+
+Campus selection must be enforced in BusinessTargetingForm.
+
+2. 🔁 Add-On Logic
+Only enabled for Starter & Growth plans
+
+Allow selection of any campus (no geo-restriction)
+
+Show campuses sorted by proximity (use geo-coordinates from university database)
+
+Add-ons billed at $10/month each
+
+3. 💸 Mid-Month Campus Add-Ons
+Use Stripe proration logic to calculate partial charges
+
+Example: Adding a campus on day 15 = $5 this cycle, full $10 starting next cycle
+
+Show tooltip:
+“You’ll only pay for the remaining days this month. Full pricing starts next cycle.”
+
+4. 🚀 Smart Upgrade Suggestion
+Trigger an upgrade banner if a user is paying close to the next tier’s cost due to add-ons:
+
+Examples:
+
+Starter ($49) + 3 add-ons ($79) → Suggest Growth ($99)
+
+Growth ($99) + 4 add-ons ($139) → Suggest Premium ($149)
+
+UI Copy Example:
+💡 “You’re currently paying $79/month. Upgrade to Growth for $99 to unlock 6 campuses — and save money!”
+
+Trigger this logic at:
+
+Checkout
+
+Settings > Plan section
+
+BusinessTargetingForm (if limits are reached)
+
+🧪 UI Requirements
+✅ Tier badges and pricing clearly displayed
+
+✅ Gray out campuses once limit is reached
+
+✅ Show 🔒 lock icon on unselectable campuses
+
+✅ Add-on toggle panel (only for Starter & Growth)
+
+✅ Real-time campus counter / tracker
+
+✅ Tooltip on locked selections:
+“Upgrade to unlock this campus or add it for $10/month.”
+
+✅ Final Notes
+Starter & Growth are flexible + upsell-focused
+
+Premium & Enterprise = fixed-value simplicity
+
+Enterprise should future-proof against campus expansion
+
+All logic should be centralized for maintainability across pages

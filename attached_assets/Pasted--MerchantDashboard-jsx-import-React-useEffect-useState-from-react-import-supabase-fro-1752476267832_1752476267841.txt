@@ -1,0 +1,136 @@
+// MerchantDashboard.jsx
+import React, { useEffect, useState } from 'react';
+import { supabase } from './supabaseClient';
+import AddOfferModal from './AddOfferModal';
+import UpdateOfferLimits from './UpdateOfferLimits';
+
+function MerchantDashboard({ user }) {
+  const [profile, setProfile] = useState(null);
+  const [deals, setDeals] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [editDeal, setEditDeal] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const { data: profileData } = await supabase
+        .from('merchant_profiles')
+        .select('*')
+        .eq('email', user.email)
+        .single();
+
+      if (profileData) {
+        setProfile(profileData);
+        await fetchDeals(profileData.email);
+      }
+
+      setLoading(false);
+    };
+
+    if (user?.email) {
+      fetchProfile();
+    }
+  }, [user]);
+
+  const fetchDeals = async (email) => {
+    const { data: dealData } = await supabase
+      .from('deals')
+      .select('*')
+      .eq('merchant_email', email);
+    setDeals(dealData || []);
+  };
+
+  const handleOfferAdded = () => {
+    fetchDeals(user.email);
+  };
+
+  const handleLimitsUpdated = () => {
+    fetchDeals(user.email);
+    setEditDeal(null);
+  };
+
+  if (loading) return <p className="text-center mt-12">Loading dashboard...</p>;
+  if (!profile) return <p className="text-center mt-12 text-red-600">No profile found.</p>;
+
+  const isDIY = profile.planType === 'DIY';
+  const isDFY = profile.planType === 'DFY';
+  const isFranchisee = profile.planType === 'FRANCHISEE';
+
+  return (
+    <div className="max-w-4xl mx-auto mt-12 p-6 bg-white shadow rounded">
+      <h2 className="text-2xl font-bold mb-4">👋 Welcome, {profile.contactName}</h2>
+      <p className="mb-2">Plan: <strong>{profile.planType}</strong></p>
+      <p className="mb-4">City: {profile.city} | Industry: {profile.industry}</p>
+
+      {isDIY && (
+        <div>
+          <h3 className="text-xl font-semibold mb-2">🎁 Your Deals</h3>
+          {deals.length === 0 ? (
+            <p className="text-gray-600">No deals created yet.</p>
+          ) : (
+            <ul className="space-y-2 mb-4">
+              {deals.map((deal) => (
+                <li key={deal.id} className="border p-3 rounded">
+                  <p className="font-bold">{deal.title}</p>
+                  <p className="text-sm text-gray-600">{deal.description}</p>
+                  <p className="text-sm text-green-600 mt-1">
+                    🔢 Limit: {deal.redemption_limit || 'Unlimited'} | ⏳ Expires: {deal.expiration_date || 'None'}
+                  </p>
+                  <div className="flex gap-4 mt-2">
+                    <button
+                      className="text-sm text-blue-600 underline"
+                      onClick={() => setEditDeal(deal)}
+                    >
+                      Edit Limits
+                    </button>
+                    <button
+                      onClick={() => exportDealCSV(deal.id, deal.title)}
+                      className="text-sm text-indigo-600 underline"
+                    >
+                      Export Redemptions
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            onClick={() => setShowAddModal(true)}
+          >
+            ➕ Add New Deal
+          </button>
+          {showAddModal && (
+            <AddOfferModal
+              user={user}
+              onClose={() => setShowAddModal(false)}
+              onOfferAdded={handleOfferAdded}
+            />
+          )}
+          {editDeal && (
+            <UpdateOfferLimits
+              offer={editDeal}
+              onClose={() => setEditDeal(null)}
+              onUpdated={handleLimitsUpdated}
+            />
+          )}
+        </div>
+      )}
+
+      {isDFY && (
+        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4">
+          <p className="font-semibold">This account is professionally managed by your dedicated account rep. Please contact us to update your deals.</p>
+        </div>
+      )}
+
+      {isFranchisee && (
+        <div className="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
+          <h3 className="font-semibold text-lg mb-2">🏙️ Franchise Dashboard</h3>
+          <p className="text-gray-700">You control all deals, redemptions, and businesses within your city. Full analytics coming soon.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default MerchantDashboard;

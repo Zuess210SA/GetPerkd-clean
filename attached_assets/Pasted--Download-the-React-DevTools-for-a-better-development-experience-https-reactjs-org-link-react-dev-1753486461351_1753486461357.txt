@@ -1,0 +1,466 @@
+ Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+ Supabase URL: https://wegpfaogrrtnsqabmssc.supabase.co
+ Supabase Key exists: true
+ i18next: languageChanged en
+ i18next: initialized Object
+ i18next: languageChanged en
+ i18next: init: i18next is already initialized. You should call init just once!
+output @ i18next.js?v=daf1a2a7:208
+ i18next: initialized Object
+ i18n initialized successfully
+ Current language: en
+ Available resources: Array(7)
+ i18n initialized successfully
+ Current language: en
+ Available resources: Array(7)
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ ✅ Initial session found: robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 🔄 Auth state change: INITIAL_SESSION robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ OneSignal subscription handler set up successfully
+ OneSignal subscription handler set up successfully
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+
+/api/saved-deals:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ i18next::translator: missingKey en common errors.please_try_again errors.please_try_again
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+
+/api/saved-deals:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ i18next::translator: missingKey en common errors.please_try_again errors.please_try_again
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+
+/api/saved-deals:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ i18next::translator: missingKey en common errors.please_try_again errors.please_try_again
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+
+/api/saved-deals:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ i18next::translator: missingKey en common errors.please_try_again errors.please_try_again
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+
+/api/saved-deals:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ i18next::translator: missingKey en common errors.please_try_again errors.please_try_again
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+
+/api/saved-deals:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ i18next::translator: missingKey en common errors.please_try_again errors.please_try_again
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+
+/api/saved-deals:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ i18next::translator: missingKey en common errors.please_try_again errors.please_try_again
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+/api/businesses/1/follow:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+ Follow error: 
+onError @ FollowButton.tsx:65
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+/api/micro-interactions/rewards:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/micro-interactions/stats:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/micro-interactions/milestones:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/micro-interactions/history:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/users/me/stats:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/users/me/saved-deals:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/users/me:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+/api/users/me/redemptions:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+/api/users/me:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ OneSignal subscription handler set up successfully
+ 🔄 Auth state change: SIGNED_IN robertmcveigh1977@gmail.com
+ Navbar render - Session: User ID: 9a14fc09-04d4-473e-bd2d-ff819122042b
+ OneSignal subscription handler set up successfully
+ 🔄 Auth state change: SIGNED_OUT undefined
+ ✅ Sign out successful
+ Navbar render - Session: No session
+ Navbar render - Session: No session
+ 🔐 Attempting sign in for: zuess210sa@gmail.com
+ 🔄 Auth state change: SIGNED_IN zuess210sa@gmail.com
+ ✅ Sign in successful: zuess210sa@gmail.com
+ Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+/api/micro-interactions/rewards:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/micro-interactions/milestones:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/micro-interactions/history:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/micro-interactions/stats:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/users/me/saved-deals:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/users/me/stats:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/users/me/redemptions:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+/api/users/me:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+ Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+(anonymous) @ @radix-ui_react-dialog.js?v=daf1a2a7:345
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+/api/users/me:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+ Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+/api/micro-interactions/rewards:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+ Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+ 🔄 Auth state change: USER_UPDATED zuess210sa@gmail.com
+ Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+ OneSignal subscription handler set up successfully
+ Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+ 🔄 Auth state change: SIGNED_IN zuess210sa@gmail.com
+ Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ 📋 Auth headers request: Object
+ 🔑 Including auth token: Object
+ OneSignal subscription handler set up successfully
+ Error loading notification preferences: 
+(anonymous) @ useNotifications.ts:18
+ Error loading preferences: 
+loadUserPreferences @ NotificationManager.tsx:47
+ 📋 Auth headers request: Object
+queryClient.ts:38 🔑 Including auth token: Object
+/api/businesses/1/follow:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+FollowButton.tsx:62 Follow error: Error: 401: {"error":"Invalid token"}
+    at throwIfResNotOk (queryClient.ts:7:11)
+    at async apiRequest (queryClient.ts:70:3)
+    at async Object.mutationFn (FollowButton.tsx:48:14)
+onError @ FollowButton.tsx:62
+Navbar.tsx:38 Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+queryClient.ts:26 📋 Auth headers request: Object
+queryClient.ts:38 🔑 Including auth token: Object
+/api/businesses/1/follow:1  Failed to load resource: the server responded with a status of 401 (Unauthorized)
+FollowButton.tsx:62 Follow error: Error: 401: {"error":"Invalid token"}
+    at throwIfResNotOk (queryClient.ts:7:11)
+    at async apiRequest (queryClient.ts:70:3)
+    at async Object.mutationFn (FollowButton.tsx:48:14)
+onError @ FollowButton.tsx:62
+Navbar.tsx:38 Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+queryClient.ts:26 📋 Auth headers request: Object
+queryClient.ts:38 🔑 Including auth token: Object
+NotSupportedError: Failed to load because no supported source was found.
+Navbar.tsx:38 Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+/api/saved-deals:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+i18next.js?v=daf1a2a7:208 i18next::translator: missingKey en common errors.please_try_again errors.please_try_again
+Navbar.tsx:38 Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+Navbar.tsx:38 Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+Navbar.tsx:38 Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+Navbar.tsx:38 Navbar render - Session: User ID: 206c25f4-c62e-4428-9bab-1b67daf959c1
+Leaderboard.tsx:14 🔧 Leaderboard: NO authentication loops - static setup
+queryClient.ts:26 📋 Auth headers request: Object
+queryClient.ts:38 🔑 Including auth token: Object
+MerchantLeaderboard.tsx:527 Uncaught TypeError: Cannot read properties of undefined (reading 'substring')
+    at MerchantLeaderboard.tsx:527:49
+    at Array.map (<anonymous>)
+    at MerchantLeaderboard (MerchantLeaderboard.tsx:455:39)
+    at renderWithHooks (chunk-276SZO74.js?v=daf1a2a7:11548:26)
+    at updateFunctionComponent (chunk-276SZO74.js?v=daf1a2a7:14582:28)
+    at beginWork (chunk-276SZO74.js?v=daf1a2a7:15924:22)
+    at HTMLUnknownElement.callCallback2 (chunk-276SZO74.js?v=daf1a2a7:3674:22)
+    at Object.invokeGuardedCallbackDev (chunk-276SZO74.js?v=daf1a2a7:3699:24)
+    at invokeGuardedCallback (chunk-276SZO74.js?v=daf1a2a7:3733:39)
+    at beginWork$1 (chunk-276SZO74.js?v=daf1a2a7:19765:15)
+MerchantLeaderboard.tsx:527 Uncaught TypeError: Cannot read properties of undefined (reading 'substring')
+    at MerchantLeaderboard.tsx:527:49
+    at Array.map (<anonymous>)
+    at MerchantLeaderboard (MerchantLeaderboard.tsx:455:39)
+    at renderWithHooks (chunk-276SZO74.js?v=daf1a2a7:11548:26)
+    at updateFunctionComponent (chunk-276SZO74.js?v=daf1a2a7:14582:28)
+    at beginWork (chunk-276SZO74.js?v=daf1a2a7:15924:22)
+    at HTMLUnknownElement.callCallback2 (chunk-276SZO74.js?v=daf1a2a7:3674:22)
+    at Object.invokeGuardedCallbackDev (chunk-276SZO74.js?v=daf1a2a7:3699:24)
+    at invokeGuardedCallback (chunk-276SZO74.js?v=daf1a2a7:3733:39)
+    at beginWork$1 (chunk-276SZO74.js?v=daf1a2a7:19765:15)
+chunk-276SZO74.js?v=daf1a2a7:14032 The above error occurred in the <MerchantLeaderboard> component:
+
+    at MerchantLeaderboard (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/src/components/MerchantLeaderboard.tsx:45:47)
+    at div
+    at div
+    at Leaderboard (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/src/pages/Leaderboard.tsx:25:33)
+    at Route (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=daf1a2a7:323:16)
+    at Switch (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=daf1a2a7:379:17)
+    at Suspense
+    at Router (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/src/App.tsx?v=ZNDEY9lHRoHNi4pFm36kI:147:3)
+    at div
+    at AppContent (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/src/App.tsx?v=ZNDEY9lHRoHNi4pFm36kI:806:38)
+    at Provider (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-3RXG37ZK.js?v=daf1a2a7:38:15)
+    at TooltipProvider (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=daf1a2a7:955:5)
+    at SubdomainProvider (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/src/context/SubdomainContext.tsx:21:37)
+    at RoleProvider (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/src/context/RoleContext.tsx:21:32)
+    at AuthProvider (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/src/context/AuthContext.tsx:21:32)
+    at QueryClientProvider (https://2ef5ca60-59b3-418d-a839-894c07366ea3-00-1amu5xjrbku3i.spock.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=daf1a2a7:2805:3)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError @ chunk-276SZO74.js?v=daf1a2a7:14032
+chunk-276SZO74.js?v=daf1a2a7:9129 Uncaught TypeError: Cannot read properties of undefined (reading 'substring')
+    at MerchantLeaderboard.tsx:527:49
+    at Array.map (<anonymous>)
+    at MerchantLeaderboard (MerchantLeaderboard.tsx:455:39)
+    at renderWithHooks (chunk-276SZO74.js?v=daf1a2a7:11548:26)
+    at updateFunctionComponent (chunk-276SZO74.js?v=daf1a2a7:14582:28)
+    at beginWork (chunk-276SZO74.js?v=daf1a2a7:15924:22)
+    at beginWork$1 (chunk-276SZO74.js?v=daf1a2a7:19753:22)
+    at performUnitOfWork (chunk-276SZO74.js?v=daf1a2a7:19198:20)
+    at workLoopSync (chunk-276SZO74.js?v=daf1a2a7:19137:13)
+    at renderRootSync (chunk-276SZO74.js?v=daf1a2a7:19116:15)
+WorkerMessenger.ts:234 Event handler of 'message' event must be added on the initial evaluation of worker script.
+listen @ WorkerMessenger.ts:234

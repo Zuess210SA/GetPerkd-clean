@@ -1,0 +1,77 @@
+ How do we have daily copy if we only have 2 test merchants?  also how do we erase or hide all of this after we test it?  I dont want actual users getting confused once we launch
+
+
+ChatGPT said:
+🔥 That’s a smart question, boss — and shows you're thinking like a real product founder. Let's break this down:
+
+💡 1. “How do we handle daily digest copy with only 2 test merchants?”
+✅ Short-term solution (during testing):
+Keep digest messages short & templated for test flows.
+Example:
+
+“🎯 Your Daily Perks (Demo):
+🍕 25% Off at Pizza Rio
+🥙 Free Hummus at Dallah Med
+🔍 Testing Mode Active – Not real deals”
+
+✅ Use a "Testing Mode" tag
+Add a [TEST MODE] label or watermark to all outgoing test content — push, SMS, UI badges, etc.
+
+That way, internal testers know it's not real content and actual users won’t be confused.
+
+🧽 2. How to clean up the test data before real launch?
+Here’s a solid launch hygiene checklist to keep things pro:
+
+🔥 A. Create a TEST_MODE toggle in your system
+Set a global IS_TEST_MODE = true in Replit env variables or Supabase
+
+When true:
+
+Display only dummy users
+
+Show only dummy deals
+
+Enable fake notifications
+
+When false:
+
+Auto-hide or delete dummy content
+
+Prevent test users from logging in
+
+🧹 B. Purge the test data before launch:
+Use Supabase or a script to delete:
+
+Table	Action
+users	Delete Jasmine, Carlos, Taylor
+deals	Delete all test deals manually
+follows	Truncate the table
+saved_deals	Truncate the table
+notifications	Clear any logged test push history
+
+Or tag test content with a flag like is_demo: true and auto-filter it out on launch.
+
+🔒 C. Disable test endpoints
+Once you're live:
+
+Remove /test-notifications route
+
+Remove admin dashboard access (or protect w/ password)
+
+Rotate ADMIN_API_KEY so nobody can spoof notifications
+
+🧠 Bonus: Add a “Staging” mode
+Later, you might want two environments:
+
+Production: Real users only
+
+Staging: For internal QA + future testing
+
+You can copy your DB schema and push to a different Supabase instance, or use a hidden subdomain like staging.getperkd.com.
+
+✅ Final Plan (What I Suggest)
+Phase	Action
+🧪 During Testing	Use [TEST MODE] labels, keep copy templated
+🔐 Pre-Launch	Clean DB → remove test data, rotate keys
+🚀 Go Live	Turn off test features, remove dummy flows
+🧰 Optional	Create a staging clone of the app for future testing

@@ -1,0 +1,118 @@
+// ✅ PART 1: GLOBAL MIDDLEWARE (for API protection)
+// /middleware.ts or /api/_middleware.ts
+
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY! // Use service role key only server-side
+);
+
+export async function middleware(req: NextRequest) {
+  const authHeader = req.headers.get('authorization');
+  const token = authHeader?.split(' ')[1];
+
+  if (!token) {
+    return new Response(JSON.stringify({ error: 'Missing token' }), { status: 401 });
+  }
+
+  const { data: { user }, error } = await supabase.auth.getUser(token);
+
+  if (error || !user) {
+    return new Response(JSON.stringify({ error: 'Invalid token' }), { status: 401 });
+  }
+
+  // Optionally attach user to request here if needed
+  return NextResponse.next();
+}
+
+// ✅ PART 2: API ROUTE PATCH EXAMPLE
+// /pages/api/users/[id].ts
+
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (!token) return res.status(401).json({ error: 'Missing token' });
+
+  const { data: { user }, error } = await supabase.auth.getUser(token);
+
+  if (error || !user) return res.status(401).json({ error: 'Invalid token' });
+
+  // ✅ Authenticated — you can now access req.query.id etc.
+  const userId = req.query.id;
+
+  const { data, error: fetchError } = await supabase
+    .from('users')
+    .select('*')
+    .eq('id', userId)
+    .single();
+
+  if (fetchError) return res.status(500).json({ error: fetchError.message });
+
+  return res.status(200).json(data);
+}
+
+// ✅ PART 3: FETCH WITH TOKEN (Frontend)
+// utils/fetchWithToken.ts
+
+export async function fetchWithToken(url: string, options: RequestInit = {}) {
+  const token = localStorage.getItem('supabase_token');
+  if (!token) throw new Error('No token found');
+
+  return fetch(url, {
+    ...options,
+    headers: {
+      ...(options.headers || {}),
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  });
+}
+
+// ✅ PART 4: REDIRECT AFTER LOGIN
+// pages/login.tsx or pages/auth.tsx
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { supabase } from '../utils/supabaseClient';
+
+export default function AuthPage() {
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        localStorage.setItem('supabase_token', supabase.auth.session()?.access_token || '');
+        router.push('/dashboard');
+      }
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN') {
+        localStorage.setItem('supabase_token', session?.access_token || '');
+        router.push('/dashboard');
+      }
+    });
+
+    return () => {
+      listener?.unsubscribe();
+    };
+  }, []);
+
+  return <div>{/* Your Auth UI */}</div>;
+}
+
+// ✅ PART 5: OPTIONAL — SUPABASE EMAIL BRANDING
+// Supabase Dashboard → Auth → Email Templates
+// Customize branding fields like logo, app name, and footer text.

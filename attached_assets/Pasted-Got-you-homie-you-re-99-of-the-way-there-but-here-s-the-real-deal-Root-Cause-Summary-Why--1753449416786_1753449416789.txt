@@ -1,0 +1,104 @@
+Got you, homie — you're 99% of the way there, but here’s the real deal:
+
+🧠 Root Cause Summary (Why You're Still Stuck)
+✅ You are being signed in:
+js
+Copy
+Edit
+Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+You’re fully authenticated via Supabase.
+
+❌ But Immediately After... You’re Getting This:
+js
+Copy
+Edit
+Error loading notification preferences: Error: 401: {"error":"Invalid token"}
+Translation: The Supabase session is being created, but then lost or corrupted, causing all your /api/ requests to return 401 Unauthorized.
+
+This is why the screen doesn't advance. Your frontend thinks you're signed in, but every secured backend call fails because the access token is not being sent properly or is expiring instantly.
+
+🔥 Diagnosis: Token Handling / Session Persistence Issue
+Here’s what’s likely going wrong:
+
+🔸 1. Supabase Auth Token is Stored, but Not Read/Refreshed Properly
+The frontend signs in and sets the session, but:
+
+It doesn’t persist to localStorage or cookies properly, OR
+
+The backend can’t validate it due to:
+
+Wrong supabase.auth.getSession() usage
+
+Wrong token in headers for /api/* calls
+
+Missing refresh listener (session expires after 1 min if not refreshed)
+
+🔸 2. Frontend is Firing Auth State Change… But Backend Middleware Rejects the Token
+You're seeing repeated 401 responses from routes like:
+
+bash
+Copy
+Edit
+/api/users/9/notification-preferences
+/api/users/1/stats
+/api/businesses/1/follow-status
+That’s because Supabase’s Authorization: Bearer <token> header is missing or invalid in the fetch requests to your backend.
+
+✅ How to Fix This (Dev Steps)
+🛠️ A. Fix Token Persistence
+In your auth.js or equivalent, make sure you persist session:
+
+js
+Copy
+Edit
+supabase.auth.onAuthStateChange((event, session) => {
+  if (session) {
+    localStorage.setItem("sb-access-token", session.access_token);
+    localStorage.setItem("sb-refresh-token", session.refresh_token);
+  }
+});
+🛠️ B. Attach Auth Headers to Backend Requests
+Every fetch call to your /api/ routes must include the token:
+
+js
+Copy
+Edit
+const session = await supabase.auth.getSession();
+const token = session?.data?.session?.access_token;
+
+fetch('/api/users/1/stats', {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+Make sure your API route (like in Next.js or Express) validates that token correctly.
+
+🛠️ C. Optional: Fix Auth Expiry with onAuthStateChange
+Set up a listener that refreshes session automatically:
+
+js
+Copy
+Edit
+supabase.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN') {
+    // refresh token every 15 min
+    setInterval(() => supabase.auth.refreshSession(), 15 * 60 * 1000);
+  }
+});
+🛠️ D. Suppress OneSignal Worker Errors (Doesn't Affect Login)
+These warnings:
+
+pgsql
+Copy
+Edit
+Refused to create a worker from 'blob:...'
+OneSignal subscription handler error: Timeout
+Don’t block login flow — just suppress them for now, or move OneSignal to lazy-load after successful login.
+
+✅ TL;DR Fix Pack for Devs
+Fix	What To Do
+✅ Persist Token	Save access_token + refresh_token to localStorage
+✅ Use Token	Attach Authorization: Bearer <token> to every /api/ call
+✅ Session Validity	Add Supabase onAuthStateChange to refresh session
+✅ Fallback Redirect	Already implemented, keep it
+❌ OneSignal Worker	Optional: suppress error or load after login

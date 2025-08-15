@@ -1,0 +1,160 @@
+Here’s your full 🚀 Get Perk’d Pre-Launch Master Checklist (Deployment Ready Edition) — with everything you mentioned, plus key items we flagged earlier.
+
+✅ PLATFORM CONFIGURATION
+🧾 Stripe
+ Create Stripe subscription products & tiers (Starter, Growth, Premium, Enterprise)
+
+ Set up Add-On billing (per-campus add-ons with proration)
+
+ Confirm webhook integration with Supabase or Replit backend
+
+ Configure trial logic (if offering first-month free or promo)
+
+📩 EMAIL SETUP
+🔑 Onboarding Emails (Welcome)
+ Welcome Email – Merchants (Plan, dashboard link, support contact)
+
+ Welcome Email – Students (how to redeem deals, profile setup)
+
+ Welcome Email – Franchisees (CRM login, training links, support line)
+
+📆 Email Drip Campaigns
+ Students (Daily/Weekly)
+
+ New deals near you
+
+ Trending now
+
+ Reward reminders
+
+ Merchants (Weekly)
+
+ Redemption stats
+
+ Tips to boost traffic
+
+ Upgrade pitch (if approaching plan limit)
+
+📲 PUSH NOTIFICATIONS
+🔔 Templates
+ “🔥 New deal just dropped near you at [Business Name]!”
+
+ “👀 This deal is trending near UTSA!”
+
+ “🎯 You have [X] deals expiring soon. Don’t miss out.”
+
+ “💥 Your saved deal is about to expire!”
+
+ “⏱️ Deal window reopens in 24 hours. Tap to redeem.”
+
+Use for daily drip + engagement sequences.
+
+🧩 CORE SYSTEMS QA
+🚦 Final Feature Readiness
+ Deal redemption logic (self-redeem vs staff-redeem w/ PIN)
+
+ Campus targeting lockout logic (by subscription tier)
+
+ Add-on campus enforcement + billing
+
+ Franchise dashboard access + analytics
+
+ Staff logins + PIN redemption tracking
+
+ Export to CSV (analytics/reporting)
+
+ Reward limits + expiration logic
+
+📢 MARKETING & ASSETS
+🏫 Campus Launch Kits
+ Ambassador Flyers w/ QR
+
+ “Save This Deal” table cards
+
+ “What is Get Perk’d?” postcard
+
+ “Join the Team” QR posters
+
+ Launch Event Poster(s)
+
+ Instagram Story Templates (for challenges)
+
+ Campus Banner (Pop-up or wall display)
+
+ Giveaway Cards (Redeem for merch)
+
+🎽 Merch
+ Shirt, hat, sticker mockups
+
+ Launch bundle (for ambassadors/franchisees)
+
+🧠 CONTENT & LEGAL
+📄 Pitch Decks
+ Franchisee Deck (Canva)
+
+ Small Business Deck (Canva)
+
+ Investor Deck (Figma)
+
+ Enterprise Deck (Figma)
+
+ Multi-Location Deck (Canva)
+
+📜 Legal & Policy Pages
+ Privacy Policy
+
+ Terms of Service
+
+ Acceptable Use (for students and businesses)
+
+ Disclaimers (student reach, offer limitations)
+
+📊 ANALYTICS & TRACKING
+ Add Google Analytics / Plausible tracking
+
+ Event logs for:
+
+Deal views
+
+Deal saves
+
+Redemptions
+
+Push delivery/open rate
+
+User acquisition source (referral, ambassador, QR)
+
+ Stripe dashboard tracking per plan tier
+
+ Franchisee revenue tracking system (optional: export to CSV)
+
+🛠️ BACKEND CONFIG CHECK
+ Supabase row-level security configured
+
+ All roles (student, merchant, staff, franchisee, admin) tested
+
+ Admin override access (Super Admin confirmed)
+
+ App deployment mode: PWA test → production
+
+ Error logging & alerting (optional: Sentry or Replit internal logs)
+
+🚀 FINAL LAUNCH CHECKLIST
+ Merchant onboarding portal live
+
+ Student discovery portal live
+
+ Redemption working across all roles
+
+ Stripe billing connected & tested
+
+ Initial 10+ deals listed & saved in demo
+
+ Ambassador outreach live
+
+ UTSA campus launch materials printed
+
+ Social launch scheduled
+
+🧠 Want This as a PDF or Clickable Notion Checklist?
+Let me know — I’ll format it how you need. You’re days away from a full rollout homie. Let's finish strong and make it unforgettable 💪

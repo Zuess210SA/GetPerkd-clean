@@ -1,0 +1,124 @@
+🧱 PHASE 1: ARCHITECTURE PLAN (Today – Day 2)
+🔧 Tech Stack (Locked)
+Layer	Technology
+🧠 Frontend	Next.js 14 (App Router) with React + TypeScript
+🗄 Backend	Supabase (PostgreSQL + Auth + Storage)
+🧩 API Layer	/app/api/ Next.js server functions
+🪪 Auth	Supabase JWT (NextAuth optional fallback)
+🌐 Domains	Vercel with subdomain routing middleware (e.g. utsa.getperkd.co)
+🔐 RBAC	Role-based logic: student, merchant, staff, franchisee, admin
+📲 Notifications	SendGrid (email), Twilio (SMS), Push (web-native)
+📊 Analytics	Supabase tables + lightweight in-app dashboards
+📦 Hosting	Vercel (Primary), Replit optional for admin/test builds
+
+🧭 OVERALL TIMELINE (30-Day Launch Plan)
+Week	Goals
+✅ Week 1 (Day 1–7)	🧠 Set up core architecture: layouts, routing, auth, roles, supabase schema
+🏗 Week 2 (Day 8–14)	Dashboards, subdomain logic, deal engine, redemption logic
+📲 Week 3 (Day 15–21)	Notifications, email/SMS templates, franchise dashboard, admin override
+🧪 Week 4 (Day 22–30)	QA, polish, push to Vercel, investor prep, data import, prelaunch config
+
+🔥 WEEK 1 DELIVERABLES (TODAY'S FOCUS)
+✅ 1. Folder Architecture (Best Practices)
+shell
+Copy
+Edit
+/app
+  /api         ← All backend API routes (Next.js serverless)
+  /auth        ← Login / signup / forgot password
+  /dashboard   ← Protected role-specific pages (auto-routed by role)
+  /components  ← Reusable UI (navbar, buttons, cards)
+  /lib         ← Supabase client, helper functions
+  /middleware.ts ← Subdomain + auth routing logic
+✅ 2. Supabase Setup
+Tables Needed:
+
+users (extended profile: name, email, role, school, etc.)
+
+deals (title, description, redemption_type, active, expiration, redemption_count, etc.)
+
+redemptions (user_id, deal_id, timestamp)
+
+businesses (merchant info, plan tier, assigned account manager)
+
+franchisees (city, email, assigned schools, analytics)
+
+schools (name, subdomain, lat/lng, branding, student_count)
+
+Roles:
+
+student, merchant, staff, franchisee, admin
+
+✅ 3. Supabase Auth Integration (Next.js)
+Setup Steps:
+
+Install Supabase SDK: npm install @supabase/supabase-js
+
+Create lib/supabase.ts:
+
+ts
+Copy
+Edit
+import { createBrowserClient } from '@supabase/ssr'
+export const supabase = createBrowserClient('SUPABASE_URL', 'SUPABASE_ANON_KEY')
+Use middleware to check token + redirect based on role
+
+✅ 4. Subdomain Middleware Routing
+In middleware.ts:
+
+ts
+Copy
+Edit
+import { NextRequest, NextResponse } from 'next/server'
+
+export function middleware(req: NextRequest) {
+  const hostname = req.headers.get('host') || ''
+  const subdomain = hostname.split('.')[0]
+  
+  if (subdomain === 'www' || subdomain === 'getperkd') return NextResponse.next()
+
+  const url = req.nextUrl.clone()
+  url.pathname = `/_sites/${subdomain}${url.pathname}`
+  return NextResponse.rewrite(url)
+}
+Create /app/_sites/[subdomain]/page.tsx to dynamically load content per campus.
+
+✅ 5. Role-Based Redirect Logic
+In login handler:
+
+ts
+Copy
+Edit
+if (user.role === 'student') redirect('/dashboard/student')
+if (user.role === 'merchant') redirect('/dashboard/merchant')
+if (user.role === 'franchisee') redirect('/dashboard/franchisee')
+In layout.tsx files, load correct UI based on session.
+
+✅ NEXT STEPS
+Do you want Replit to begin the Next.js scaffold + Supabase auth logic now?
+
+Or do you want me to build the base template for you right here as a code repo?
+
+Either way, by end of Day 2 we’ll have:
+
+Full scaffold live
+
+Working login/signup
+
+Role-based redirect
+
+Subdomain middleware functional
+
+Clean base UI to start dashboard development
+
+Let’s go Homie — this is the rebuild that earns you franchisees, investors, and legacy-level respect. Just tell me who’s executing next and I’ll prep the build phase.
+
+
+
+
+
+
+
+
+
+Ask ChatGPT

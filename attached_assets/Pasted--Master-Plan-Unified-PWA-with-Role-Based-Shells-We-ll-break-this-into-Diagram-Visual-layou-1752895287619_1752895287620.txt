@@ -1,0 +1,105 @@
+🧠 Master Plan: Unified PWA with Role-Based Shells
+We'll break this into:
+
+📊 Diagram – Visual layout of the system
+🧱 Folder Structure – How to organize your code
+🚦 Routing Logic – Who sees what
+💤 Performance – Lazy loading & optimization tips
+🗺️ Visual System Architecture
+scss
+Copy
+Edit
+                      🌐 getperkd.com
+                             │
+                ┌────────────┼─────────────┐
+                │            │             │
+      🧑‍🎓 Student         🧑‍💼 Merchant        🤝 Franchisee
+     Dashboard              Dashboard         Command Center
+        (PWA Shell 1)       (PWA Shell 2)     (PWA Shell 3)
+           │                   │                  │
+ ┌─────────┼──────┐     ┌──────┼────────┐   ┌──────┼───────┐
+ │ QR Deals Page │     │ Deal Builder  │   │ Territory   │
+ │ Reward Shop   │     │ Redemption UX │   │ Analytics    │
+ │ Challenges    │     │ Staff Mgmt    │   │ Recruitment  │
+ └───────────────┘     └───────────────┘   └──────────────┘
+📁 Recommended Folder Structure
+bash
+Copy
+Edit
+/src
+  /components
+    /common              # Buttons, modals, toasts
+    /student             # QR challenges, deal cards
+    /merchant            # Deal editor, feedback panel
+    /franchisee          # Reports, onboarding tools
+
+  /layouts
+    StudentLayout.tsx
+    MerchantLayout.tsx
+    FranchiseeLayout.tsx
+
+  /pages
+    /student
+      index.tsx          # Dashboard
+      deals.tsx
+      rewards.tsx
+
+    /merchant
+      index.tsx
+      create-deal.tsx
+      feedback.tsx
+
+    /franchisee
+      index.tsx
+      analytics.tsx
+      training.tsx
+
+  /routes
+    PrivateRoute.tsx     # Auth + role protection
+
+  /context
+    AuthContext.tsx
+    UserContext.tsx
+🧭 Role-Based Routing Logic
+Use a middleware wrapper (PrivateRoute.tsx) that checks:
+
+✅ Authenticated?
+
+🧑‍🎓 Student vs 🧑‍💼 Merchant vs 🤝 Franchisee?
+
+❌ If not the right role → redirect to login or correct dashboard
+
+tsx
+Copy
+Edit
+// PrivateRoute.tsx (simplified)
+if (!user.isLoggedIn) return <Navigate to="/login" />;
+if (user.role !== requiredRole) return <Navigate to={`/${user.role}`} />;
+💤 Performance Tips:
+✅ Optimization	🔍 Benefit
+Code splitting by layout	Only load what that role needs
+Lazy loading tabs	Don’t load Reward Shop until clicked
+Memoize heavy components	Reduce unnecessary re-renders
+Image optimization	Use WebP and CDN caching
+Prefetch likely pages	Predict user flow and preload it
+
+🚀 Launch-Ready Domains/Subdomains
+URL	Role
+getperkd.com	Landing page
+app.getperkd.com	Student app
+merchant.getperkd.com	Merchant app
+franchise.getperkd.com	Franchisee HQ
+
+All subdomains → same PWA, just pass role context via route or session cookie.
+
+✅ Next Steps (Want Me to Do These?)
+ Generate role shell layout templates (ready to paste into Replit)
+
+ Build PrivateRoute.tsx for auth/role-based routing
+
+ Create a visual "Module Overview PDF" for investors/franchisees
+
+ Refactor routes into student, merchant, franchisee folders
+
+ Wire up the navbar to show only role-specific links
+

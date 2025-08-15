@@ -1,0 +1,102 @@
+🔁 City Card Auto-Assignment Logic
+✅ Step 1: Define Your Cities & Geo Zones
+Create a simple lookup table in your backend (or constants file):
+
+js
+Copy
+Edit
+const cityZones = [
+  {
+    name: "San Antonio",
+    lat: 29.4241,
+    lng: -98.4936,
+    radiusMiles: 30,
+    slug: "san-antonio"
+  },
+  {
+    name: "San Marcos",
+    lat: 29.8833,
+    lng: -97.9414,
+    radiusMiles: 25,
+    slug: "san-marcos"
+  },
+  {
+    name: "Austin",
+    lat: 30.2672,
+    lng: -97.7431,
+    radiusMiles: 25,
+    slug: "austin"
+  }
+  // Add more cities as needed
+]
+Tip: Use the slug for database keys and UI display.
+
+✅ Step 2: Run This Function on Business Create/Update
+js
+Copy
+Edit
+function assignCityCardToBusiness(business) {
+  const businessLat = business.latitude;
+  const businessLng = business.longitude;
+
+  for (const city of cityZones) {
+    const distance = getDistanceInMiles(businessLat, businessLng, city.lat, city.lng);
+
+    if (distance <= city.radiusMiles) {
+      business.assignedCityCard = city.slug;
+      business.cityCardAutoAssigned = true;
+      console.log(`✅ Assigned ${city.name} City Card to ${business.name}`);
+      return;
+    }
+  }
+
+  // Optional: Handle no-match scenario
+  business.assignedCityCard = null;
+  business.cityCardAutoAssigned = false;
+  console.log(`⚠️ No matching city zone found for ${business.name}`);
+}
+✅ Step 3: Distance Calculator Helper
+Use Haversine formula to calculate radius:
+
+js
+Copy
+Edit
+function getDistanceInMiles(lat1, lon1, lat2, lon2) {
+  const R = 3958.8; // Radius of Earth in miles
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) *
+    Math.cos(lat2 * (Math.PI / 180)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+✅ Step 4: Store This in Your Database
+Update your businesses table to include:
+
+ts
+Copy
+Edit
+assignedCityCard: string // e.g., "san-antonio"
+cityCardAutoAssigned: boolean // true = system assigned
+This keeps logic clean and transparent — and also gives you the ability to manually override if needed down the road.
+
+🧪 Optional Bonus: One-Time Script for Existing Businesses
+Run this on your current businesses table to assign city cards in bulk:
+
+js
+Copy
+Edit
+for (const business of allBusinesses) {
+  assignCityCardToBusiness(business);
+  saveToDatabase(business);
+}
+🧠 Final Notes:
+This has zero impact on plan limits — only campus counts matter.
+
+You can still offer add-ons later for multi-city expansion.
+
+City Card visibility becomes default — no extra configuration needed.

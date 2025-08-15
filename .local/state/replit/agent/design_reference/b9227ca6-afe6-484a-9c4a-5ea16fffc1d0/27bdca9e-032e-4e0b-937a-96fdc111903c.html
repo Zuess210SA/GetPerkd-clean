@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniDeals - Student Rewards App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#3B82F6',
+                        'secondary': '#EAB308',
+                        'accent': '#10B981',
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-50 font-sans">
+    <!-- Navigation Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-primary">UniDeals</h1>
+                    </div>
+                    <nav class="hidden md:block ml-10">
+                        <div class="flex space-x-8">
+                            <a href="#" class="text-slate-900 hover:text-primary px-3 py-2 text-sm font-medium">Browse</a>
+                            <a href="#" class="text-slate-500 hover:text-primary px-3 py-2 text-sm font-medium">Categories</a>
+                            <a href="#" class="text-slate-500 hover:text-primary px-3 py-2 text-sm font-medium">Saved</a>
+                            <a href="#" class="text-slate-500 hover:text-primary px-3 py-2 text-sm font-medium">Business</a>
+                        </div>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search deals..." class="w-64 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <i class="fas fa-search absolute right-3 top-3 text-slate-400"></i>
+                    </div>
+                    <div class="relative">
+                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=32&h=32" alt="Profile">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero Section -->
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-8 text-white">
+                <div class="max-w-3xl">
+                    <h2 class="text-4xl font-bold mb-4">Exclusive Student Deals</h2>
+                    <p class="text-xl mb-6 opacity-90">Discover amazing discounts from local businesses near your campus</p>
+                    <div class="flex items-center space-x-4">
+                        <button class="bg-secondary text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+                            <i class="fas fa-compass mr-2"></i>
+                            Find Nearby Deals
+                        </button>
+                        <div class="text-sm opacity-80">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            University of California, Berkeley
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center">
+                        <div class="bg-emerald-100 p-3 rounded-lg">
+                            <i class="fas fa-percent text-emerald-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-2xl font-bold text-slate-900">127</p>
+                            <p class="text-slate-500">Active Deals</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 p-3 rounded-lg">
+                            <i class="fas fa-bookmark text-blue-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-2xl font-bold text-slate-900">12</p>
+                            <p class="text-slate-500">Saved Deals</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center">
+                        <div class="bg-yellow-100 p-3 rounded-lg">
+                            <i class="fas fa-trophy text-yellow-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-2xl font-bold text-slate-900">$248</p>
+                            <p class="text-slate-500">Total Saved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filters -->
+        <section class="mb-8">
+            <div class="flex flex-wrap gap-3">
+                <button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-star mr-1"></i>
+                    All
+                </button>
+                <button class="bg-white text-slate-700 px-4 py-2 rounded-full text-sm font-medium border hover:bg-slate-50">
+                    <i class="fas fa-utensils mr-1"></i>
+                    Food & Dining
+                </button>
+                <button class="bg-white text-slate-700 px-4 py-2 rounded-full text-sm font-medium border hover:bg-slate-50">
+                    <i class="fas fa-shopping-bag mr-1"></i>
+                    Shopping
+                </button>
+                <button class="bg-white text-slate-700 px-4 py-2 rounded-full text-sm font-medium border hover:bg-slate-50">
+                    <i class="fas fa-gamepad mr-1"></i>
+                    Entertainment
+                </button>
+                <button class="bg-white text-slate-700 px-4 py-2 rounded-full text-sm font-medium border hover:bg-slate-50">
+                    <i class="fas fa-dumbbell mr-1"></i>
+                    Fitness
+                </button>
+                <button class="bg-white text-slate-700 px-4 py-2 rounded-full text-sm font-medium border hover:bg-slate-50">
+                    <i class="fas fa-book mr-1"></i>
+                    Education
+                </button>
+            </div>
+        </section>
+
+        <!-- Deal Cards Grid -->
+        <section class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Deal Card 1 - Active -->
+                <!-- @COMPONENT: DealCard [deal object, onRedeem handler] -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Beautiful pizza restaurant interior with warm lighting -->
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=200" alt="Pizza restaurant interior" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-utensils mr-1"></i>
+                                Food & Dining
+                            </span>
+                            <span class="text-slate-500 text-sm">0.2 miles</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">25% Off Pizza Night</h3>
+                        <p class="text-slate-600 mb-4">Get 25% off any large pizza after 6 PM. Valid Monday-Thursday only.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-clock mr-1"></i>
+                                Expires Dec 31
+                            </div>
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-users mr-1"></i>
+                                78 claimed
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-secondary text-slate-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-400 transition-colors">
+                                <i class="fas fa-bookmark mr-1"></i>
+                                Save Deal
+                            </button>
+                            <button class="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-ticket-alt mr-1"></i>
+                                Redeem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: DealCard -->
+
+                <!-- Deal Card 2 - Saved -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Modern fitness gym with equipment and bright lighting -->
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=200" alt="Modern fitness gym interior" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-dumbbell mr-1"></i>
+                                Fitness
+                            </span>
+                            <span class="text-slate-500 text-sm">0.5 miles</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Free Week Trial</h3>
+                        <p class="text-slate-600 mb-4">Full access to gym facilities and group classes for one week. No commitment required.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-clock mr-1"></i>
+                                Expires Jan 15
+                            </div>
+                            <div class="text-sm text-emerald-600 font-medium">
+                                <i class="fas fa-bookmark mr-1"></i>
+                                Saved
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-slate-100 text-slate-600 px-4 py-2 rounded-lg font-medium">
+                                <i class="fas fa-check mr-1"></i>
+                                Saved
+                            </button>
+                            <button class="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-ticket-alt mr-1"></i>
+                                Redeem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deal Card 3 - Redeemed -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow opacity-75">
+                    <!-- Cozy coffee shop with comfortable seating -->
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=200" alt="Cozy coffee shop interior" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-coffee mr-1"></i>
+                                Food & Dining
+                            </span>
+                            <span class="text-slate-500 text-sm">0.1 miles</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Buy 1 Get 1 Coffee</h3>
+                        <p class="text-slate-600 mb-4">Buy any coffee drink and get a second one free. Perfect for sharing with friends!</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-clock mr-1"></i>
+                                Expired Dec 20
+                            </div>
+                            <div class="text-sm text-emerald-600 font-medium">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                Redeemed Dec 18
+                            </div>
+                        </div>
+                        <div class="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg text-center font-medium">
+                            <i class="fas fa-check mr-1"></i>
+                            Successfully Redeemed
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deal Card 4 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Modern bookstore with shelves and reading area -->
+                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=200" alt="Modern bookstore interior" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-book mr-1"></i>
+                                Education
+                            </span>
+                            <span class="text-slate-500 text-sm">0.3 miles</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">20% Off Textbooks</h3>
+                        <p class="text-slate-600 mb-4">Save on new and used textbooks. Student ID required for verification.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-clock mr-1"></i>
+                                Expires Feb 28
+                            </div>
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-users mr-1"></i>
+                                156 claimed
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-secondary text-slate-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-400 transition-colors">
+                                <i class="fas fa-bookmark mr-1"></i>
+                                Save Deal
+                            </button>
+                            <button class="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-ticket-alt mr-1"></i>
+                                Redeem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deal Card 5 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Movie theater with comfortable seating -->
+                    <img src="https://pixabay.com/get/g5f87b4f5e987023bca38b15471d2e55be6e0cbd09862dbaad99150eb99abbe0bc4f2e42f2055becdeba4c1f3d715e60b45a676e10850a0a2ca64652aa7d5be5e_1280.jpg" alt="Movie theater interior" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-gamepad mr-1"></i>
+                                Entertainment
+                            </span>
+                            <span class="text-slate-500 text-sm">0.8 miles</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Student Movie Night</h3>
+                        <p class="text-slate-600 mb-4">$5 tickets for any movie on Tuesday nights. Show your student ID at checkout.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-clock mr-1"></i>
+                                Expires Dec 31
+                            </div>
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-users mr-1"></i>
+                                42 claimed
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-secondary text-slate-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-400 transition-colors">
+                                <i class="fas fa-bookmark mr-1"></i>
+                                Save Deal
+                            </button>
+                            <button class="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-ticket-alt mr-1"></i>
+                                Redeem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deal Card 6 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Trendy clothing store with modern displays -->
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=200" alt="Modern clothing store interior" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-pink-100 text-pink-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-shopping-bag mr-1"></i>
+                                Shopping
+                            </span>
+                            <span class="text-slate-500 text-sm">0.4 miles</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">30% Off All Apparel</h3>
+                        <p class="text-slate-600 mb-4">Huge discount on all clothing items. Perfect for updating your wardrobe on a budget.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-clock mr-1"></i>
+                                Expires Jan 31
+                            </div>
+                            <div class="text-sm text-slate-500">
+                                <i class="fas fa-users mr-1"></i>
+                                91 claimed
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-secondary text-slate-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-400 transition-colors">
+                                <i class="fas fa-bookmark mr-1"></i>
+                                Save Deal
+                            </button>
+                            <button class="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-ticket-alt mr-1"></i>
+                                Redeem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-8">
+                <button class="bg-white text-primary border border-primary px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors">
+                    Load More Deals
+                </button>
+            </div>
+        </section>
+
+        <!-- Business Dashboard Preview -->
+        <section class="mb-12">
+            <div class="bg-white rounded-xl shadow-sm p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-slate-900">Business Dashboard</h2>
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-plus mr-1"></i>
+                        Create New Deal
+                    </button>
+                </div>
+                
+                <!-- Business Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-slate-50 rounded-lg p-4">
+                        <p class="text-sm text-slate-600">Active Deals</p>
+                        <p class="text-2xl font-bold text-slate-900">8</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-lg p-4">
+                        <p class="text-sm text-slate-600">Total Redemptions</p>
+                        <p class="text-2xl font-bold text-slate-900">247</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-lg p-4">
+                        <p class="text-sm text-slate-600">This Month</p>
+                        <p class="text-2xl font-bold text-slate-900">52</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-lg p-4">
+                        <p class="text-sm text-slate-600">Revenue Impact</p>
+                        <p class="text-2xl font-bold text-slate-900">$3,240</p>
+                    </div>
+                </div>
+
+                <!-- Deal Management Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-slate-200">
+                                <th class="text-left py-3 px-4 font-medium text-slate-900">Deal</th>
+                                <th class="text-left py-3 px-4 font-medium text-slate-900">Status</th>
+                                <th class="text-left py-3 px-4 font-medium text-slate-900">Redemptions</th>
+                                <th class="text-left py-3 px-4 font-medium text-slate-900">Expires</th>
+                                <th class="text-left py-3 px-4 font-medium text-slate-900">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-3 px-4">
+                                    <div class="font-medium text-slate-900">25% Off Pizza Night</div>
+                                    <div class="text-sm text-slate-500">Food & Dining</div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full text-xs font-medium">Active</span>
+                                </td>
+                                <td class="py-3 px-4">78</td>
+                                <td class="py-3 px-4">Dec 31, 2024</td>
+                                <td class="py-3 px-4">
+                                    <button class="text-primary hover:text-blue-700 mr-2">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-red-500 hover:text-red-700">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-3 px-4">
+                                    <div class="font-medium text-slate-900">Free Week Trial</div>
+                                    <div class="text-sm text-slate-500">Fitness</div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full text-xs font-medium">Active</span>
+                                </td>
+                                <td class="py-3 px-4">34</td>
+                                <td class="py-3 px-4">Jan 15, 2025</td>
+                                <td class="py-3 px-4">
+                                    <button class="text-primary hover:text-blue-700 mr-2">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-red-500 hover:text-red-700">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 md:hidden">
+        <div class="flex justify-around py-2">
+            <button class="flex flex-col items-center py-2 px-4 text-primary">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">Browse</span>
+            </button>
+            <button class="flex flex-col items-center py-2 px-4 text-slate-500">
+                <i class="fas fa-bookmark text-xl"></i>
+                <span class="text-xs mt-1">Saved</span>
+            </button>
+            <button class="flex flex-col items-center py-2 px-4 text-slate-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">Profile</span>
+            </button>
+            <button class="flex flex-col items-center py-2 px-4 text-slate-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">Business</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Redemption Modal (Hidden by default) -->
+    <div id="redemptionModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-ticket-alt text-2xl text-slate-900"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Redeem Deal</h3>
+                    <p class="text-slate-600">25% Off Pizza Night</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <button class="w-full bg-secondary text-slate-900 px-4 py-3 rounded-lg font-medium hover:bg-yellow-400 transition-colors">
+                        <i class="fas fa-user mr-2"></i>
+                        Self-Redeem
+                    </button>
+                    
+                    <div class="border-t pt-4">
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Staff Redemption Code:</label>
+                        <div class="flex space-x-2">
+                            <input type="text" placeholder="Enter code" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-6">
+                    <button class="text-slate-500 hover:text-slate-700">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Animation Container -->
+    <div id="confettiContainer" class="fixed inset-0 pointer-events-none z-50"></div>
+
+    <script>
+        // TODO: Implement business logic, API calls, and state management
+        
+        (function() {
+            // Simple demo functionality - not production ready
+            const deals = [
+                {
+                    id: 1,
+                    title: "25% Off Pizza Night",
+                    description: "Get 25% off any large pizza after 6 PM. Valid Monday-Thursday only.",
+                    category: "Food & Dining",
+                    distance: "0.2 miles",
+                    expires: "Dec 31",
+                    claimed: 78
+                }
+            ];
+            
+            // Handle save deal buttons
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Save Deal')) {
+                    button.addEventListener('click', function() {
+                        this.innerHTML = '<i class="fas fa-check mr-1"></i>Saved';
+                        this.className = 'flex-1 bg-slate-100 text-slate-600 px-4 py-2 rounded-lg font-medium';
+                    });
+                }
+            });
+            
+            // Handle redeem buttons
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Redeem')) {
+                    button.addEventListener('click', function() {
+                        document.getElementById('redemptionModal').classList.remove('hidden');
+                    });
+                }
+            });
+            
+            // Handle modal close
+            document.getElementById('redemptionModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+            
+            // Simple confetti effect placeholder
+            function triggerConfetti() {
+                // TODO: Implement actual confetti animation
+                console.log('Confetti animation triggered!');
+            }
+            
+            // Demo search functionality
+            const searchInput = document.querySelector('input[placeholder="Search deals..."]');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    // TODO: Implement search filtering
+                    console.log('Searching for:', this.value);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

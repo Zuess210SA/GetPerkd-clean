@@ -1,0 +1,402 @@
+getperkd.co/:1 Refused to load the script 'https://replit.com/public/js/replit-dev-banner.js' because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.onesignal.com". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
+
+OneSignalApi.ts:12 Refused to load the script 'https://api.onesignal.com/sync/066ad7b5-2b0c-462f-b8e2-cfa32d852d38/web?callback=__jp0' because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.onesignal.com". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
+
+t @ index.js:85
+jsonpLib @ OneSignalApi.ts:12
+(anonymous) @ OneSignalApi.ts:21
+downloadServerAppConfig @ OneSignalApi.ts:19
+getAppConfig @ ConfigHelper.ts:59
+getAppConfig @ ConfigManager.ts:18
+_initializeConfig @ OneSignal.ts:52
+init @ OneSignal.ts:130
+(anonymous) @ (index):55
+processItem @ ProcessOneSignalPushCalls.ts:9
+push @ OneSignal.ts:266
+processOneSignalDeferredArray @ ReplayCallsOnOneSignal.ts:12
+qs @ pageSdkInit.ts:38
+(anonymous) @ pageSdkInit.ts:50
+(anonymous) @ pageSdkInit.ts:50
+index-CasfyBFS.js:56 Supabase URL: https://wegpfaogrrtnsqabmssc.supabase.co
+index-CasfyBFS.js:56 Supabase Key exists: true
+index-CasfyBFS.js:361 i18n initialized successfully
+index-CasfyBFS.js:361 Current language: en
+index-CasfyBFS.js:361 Available resources: (7) ['en', 'es', 'en-utsa', 'es-utsa', 'en-alamo', 'en-texasstate', 'en-utaustin']
+index-CasfyBFS.js:414 Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 User signed in successfully, refreshing navbar state
+index-CasfyBFS.js:414 Initial session check: Found session for robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 Auth state change: INITIAL_SESSION User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:56  GET https://getperkd.co/api/users/9/notification-preferences 401 (Unauthorized)
+Hr @ index-CasfyBFS.js:56
+await in Hr
+(anonymous) @ index-CasfyBFS.js:406
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:406 Error loading notification preferences: Error: 401: {"error":"Invalid token"}
+    at e_ (index-CasfyBFS.js:56:32630)
+    at async Hr (index-CasfyBFS.js:56:33020)
+    at async index-CasfyBFS.js:406:13261
+(anonymous) @ index-CasfyBFS.js:406
+await in (anonymous)
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:56  GET https://getperkd.co/api/users/9/notification-preferences 401 (Unauthorized)
+Hr @ index-CasfyBFS.js:56
+await in Hr
+c @ index-CasfyBFS.js:406
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:56  GET https://getperkd.co/api/users/1/stats 401 (Unauthorized)
+(anonymous) @ index-CasfyBFS.js:56
+await in (anonymous)
+o @ index-CasfyBFS.js:49
+v @ index-CasfyBFS.js:49
+start @ index-CasfyBFS.js:49
+fetch @ index-CasfyBFS.js:49
+Gi @ index-CasfyBFS.js:49
+onSubscribe @ index-CasfyBFS.js:49
+subscribe @ index-CasfyBFS.js:49
+(anonymous) @ index-CasfyBFS.js:49
+hS @ index-CasfyBFS.js:39
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:406 Error loading preferences: Error: 401: {"error":"Invalid token"}
+    at e_ (index-CasfyBFS.js:56:32630)
+    at async Hr (index-CasfyBFS.js:56:33020)
+    at async c (index-CasfyBFS.js:406:8556)
+c @ index-CasfyBFS.js:406
+await in c
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:56  GET https://getperkd.co/api/stats 401 (Unauthorized)
+(anonymous) @ index-CasfyBFS.js:56
+await in (anonymous)
+o @ index-CasfyBFS.js:49
+v @ index-CasfyBFS.js:49
+start @ index-CasfyBFS.js:49
+fetch @ index-CasfyBFS.js:49
+Gi @ index-CasfyBFS.js:49
+onSubscribe @ index-CasfyBFS.js:49
+subscribe @ index-CasfyBFS.js:49
+(anonymous) @ index-CasfyBFS.js:49
+hS @ index-CasfyBFS.js:39
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:56  GET https://getperkd.co/api/users/9/notification-preferences 401 (Unauthorized)
+Hr @ index-CasfyBFS.js:56
+await in Hr
+(anonymous) @ index-CasfyBFS.js:406
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:406 Error loading notification preferences: Error: 401: {"error":"Invalid token"}
+    at e_ (index-CasfyBFS.js:56:32630)
+    at async Hr (index-CasfyBFS.js:56:33020)
+    at async index-CasfyBFS.js:406:13261
+(anonymous) @ index-CasfyBFS.js:406
+await in (anonymous)
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:56  GET https://getperkd.co/api/users/9/notification-preferences 401 (Unauthorized)
+Hr @ index-CasfyBFS.js:56
+await in Hr
+c @ index-CasfyBFS.js:406
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:406 Error loading preferences: Error: 401: {"error":"Invalid token"}
+    at e_ (index-CasfyBFS.js:56:32630)
+    at async Hr (index-CasfyBFS.js:56:33020)
+    at async c (index-CasfyBFS.js:406:8556)
+c @ index-CasfyBFS.js:406
+await in c
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+Refused to load media from '<URL>' because it violates the following Content Security Policy directive: "default-src 'self'". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+
+index-CasfyBFS.js:56  GET https://getperkd.co/api/users/9/notification-preferences 401 (Unauthorized)
+Hr @ index-CasfyBFS.js:56
+await in Hr
+(anonymous) @ index-CasfyBFS.js:406
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:406 Error loading notification preferences: Error: 401: {"error":"Invalid token"}
+    at e_ (index-CasfyBFS.js:56:32630)
+    at async Hr (index-CasfyBFS.js:56:33020)
+    at async index-CasfyBFS.js:406:13261
+(anonymous) @ index-CasfyBFS.js:406
+await in (anonymous)
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:56  GET https://getperkd.co/api/users/9/notification-preferences 401 (Unauthorized)
+Hr @ index-CasfyBFS.js:56
+await in Hr
+c @ index-CasfyBFS.js:406
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:402  GET https://getperkd.co/api/businesses/2/follow-status 401 (Unauthorized)
+queryFn @ index-CasfyBFS.js:402
+o @ index-CasfyBFS.js:49
+v @ index-CasfyBFS.js:49
+start @ index-CasfyBFS.js:49
+fetch @ index-CasfyBFS.js:49
+Gi @ index-CasfyBFS.js:49
+onSubscribe @ index-CasfyBFS.js:49
+subscribe @ index-CasfyBFS.js:49
+(anonymous) @ index-CasfyBFS.js:49
+hS @ index-CasfyBFS.js:39
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:402  GET https://getperkd.co/api/businesses/1/follow-status 401 (Unauthorized)
+queryFn @ index-CasfyBFS.js:402
+o @ index-CasfyBFS.js:49
+v @ index-CasfyBFS.js:49
+start @ index-CasfyBFS.js:49
+fetch @ index-CasfyBFS.js:49
+Gi @ index-CasfyBFS.js:49
+onSubscribe @ index-CasfyBFS.js:49
+subscribe @ index-CasfyBFS.js:49
+(anonymous) @ index-CasfyBFS.js:49
+hS @ index-CasfyBFS.js:39
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:406 Error loading preferences: Error: 401: {"error":"Invalid token"}
+    at e_ (index-CasfyBFS.js:56:32630)
+    at async Hr (index-CasfyBFS.js:56:33020)
+    at async c (index-CasfyBFS.js:406:8556)
+c @ index-CasfyBFS.js:406
+await in c
+(anonymous) @ index-CasfyBFS.js:406
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+feature_collector.js:23 using deprecated parameters for the initialization function; pass a single object instead
+M @ feature_collector.js:23
+main @ feature_collector.js:23
+mainFunction @ feature_collector.js:23
+(anonymous) @ feature_collector.js:23
+index-CasfyBFS.js:414 Auth state change: SIGNED_OUT No session
+index-CasfyBFS.js:402  GET https://getperkd.co/api/businesses/2/follow-status 401 (Unauthorized)
+queryFn @ index-CasfyBFS.js:402
+o @ index-CasfyBFS.js:49
+v @ index-CasfyBFS.js:49
+start @ index-CasfyBFS.js:49
+fetch @ index-CasfyBFS.js:49
+Gi @ index-CasfyBFS.js:49
+onSubscribe @ index-CasfyBFS.js:49
+subscribe @ index-CasfyBFS.js:49
+(anonymous) @ index-CasfyBFS.js:49
+hS @ index-CasfyBFS.js:39
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+index-CasfyBFS.js:402  GET https://getperkd.co/api/businesses/1/follow-status 401 (Unauthorized)
+queryFn @ index-CasfyBFS.js:402
+o @ index-CasfyBFS.js:49
+v @ index-CasfyBFS.js:49
+start @ index-CasfyBFS.js:49
+fetch @ index-CasfyBFS.js:49
+Gi @ index-CasfyBFS.js:49
+onSubscribe @ index-CasfyBFS.js:49
+subscribe @ index-CasfyBFS.js:49
+(anonymous) @ index-CasfyBFS.js:49
+hS @ index-CasfyBFS.js:39
+Mu @ index-CasfyBFS.js:41
+Ro @ index-CasfyBFS.js:41
+Ey @ index-CasfyBFS.js:41
+es @ index-CasfyBFS.js:39
+UN @ index-CasfyBFS.js:41
+cs @ index-CasfyBFS.js:41
+WS @ index-CasfyBFS.js:41
+_ @ index-CasfyBFS.js:26
+B @ index-CasfyBFS.js:26
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+index-CasfyBFS.js:414 Auth attempt: {mode: 'login', email: 'RobertMcVeigh1977@gmail.com'}
+index-CasfyBFS.js:414 Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 User signed in successfully, refreshing navbar state
+index-CasfyBFS.js:414 Login result: {data: {…}, error: null}
+ReplayCallsOnOneSignal.ts:15 Error: Timeout
+    at index.js:57:18
+processOneSignalDeferredArray @ ReplayCallsOnOneSignal.ts:15
+await in processOneSignalDeferredArray
+qs @ pageSdkInit.ts:38
+(anonymous) @ pageSdkInit.ts:50
+(anonymous) @ pageSdkInit.ts:50
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 User signed in successfully, refreshing navbar state
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 User signed in successfully, refreshing navbar state
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 Auth state change: TOKEN_REFRESHED User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 User signed in successfully, refreshing navbar state
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully
+index-CasfyBFS.js:414 Auth attempt: {mode: 'login', email: 'RobertMcVeigh1977@gmail.com'}
+index-CasfyBFS.js:414 Auth state change: SIGNED_IN User: robertmcveigh1977@gmail.com
+index-CasfyBFS.js:414 User signed in successfully, refreshing navbar state
+index-CasfyBFS.js:414 Login result: {data: {…}, error: null}
+index-CasfyBFS.js:414 OneSignal subscription handler set up successfully

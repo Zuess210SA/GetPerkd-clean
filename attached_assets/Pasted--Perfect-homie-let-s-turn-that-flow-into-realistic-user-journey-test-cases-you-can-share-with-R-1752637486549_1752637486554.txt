@@ -1,0 +1,114 @@
+💯 Perfect, homie — let’s turn that flow into realistic user journey test cases you can share with Replit or use to demo your system at UTSA.
+
+Here’s a breakdown of 3 key user flows — showing how a student interacts with the platform across notifications and preferences.
+
+🔄 User Flow 1: Follow → Digest → Trending Deal → Unfollow
+🎓 User: Jasmine, UTSA Freshman
+Scenario: Jasmine discovers Get Perk’d during welcome week. She follows a few fav spots and sees the system respond smartly.
+
+🔁 Step-by-Step:
+Visits Deal Feed
+
+Sees deals from Dallah Med, Pizza Rio, Toro Bowl
+
+Clicks ❤️ on Dallah Med + Pizza Rio + Toro Bowl → Now following 3 merchants
+
+Sets Notification Preferences
+
+Turns on “Only notify me from followed businesses”
+
+Sets Daily Limit: 3 and Min Discount: 15%
+
+Next Morning (Digest Triggered)
+
+Receives 1 push:
+
+“🔥 Your Daily Perks: $5 Shawarma, 20% Off Tacos, Free Boba Drop!”
+
+Later That Day
+
+Sees an instant push:
+
+“🚨 Trending: Toro Bowl’s 50% Off Deal is blowing up!”
+
+Opens, saves deal, redeems that day
+
+After Two Weeks
+
+Notices Toro Bowl is posting too often
+
+Goes to Profile → Unfollows Toro Bowl
+
+✅ Result:
+Pushes stay relevant, digest is on point, and Jasmine feels in control.
+
+🧭 User Flow 2: New User, Zero Follows → Gradual Engagement
+🎓 User: Carlos, Commuter Sophomore
+Scenario: Carlos is cautious about spam and doesn’t follow anyone at first.
+
+Steps:
+Skips Following at Signup
+
+Browses deals but ignores the follow buttons
+
+Receives Digest Next Morning (Broad-Based)
+
+Gets:
+
+“🎉 New Deals: $3 Coffee, 2-for-1 Haircut, Free Gym Week”
+
+2 of them catch his attention
+
+Opens Deal → Sees Push Toggle for Merchant
+
+Follows Campus Coffee Co.
+
+Enables notifications
+
+Now Receives Targeted Pushes for Just That Business
+
+No more spam, only when Campus Coffee drops 🔥
+
+✅ Result:
+Carlos stays engaged without getting annoyed, slowly builds loyalty to local spots.
+
+🔁 User Flow 3: Power User on Strict Filters
+🎓 User: Taylor, Honors Student & Busy Bee
+Scenario: Taylor is obsessed with value — only wants big discounts and no spam.
+
+Steps:
+Follows 5 Businesses
+
+Only the most relevant ones for her (study cafés, tutoring deals)
+
+Notification Preferences
+
+Only Followed
+
+Daily Max: 2
+
+Min Discount: 25%
+
+Quality Filter: “Only Trending”
+
+Next Morning:
+
+Gets 1 digest:
+
+“🎯 30% Off Tutor Time & Free Espresso Shot Today”
+
+Never Receives Irrelevant Pushes
+
+✅ Result:
+Taylor becomes a Get Perk’d superfan because it respects her time and delivers value only.
+
+🔧 Want Me to Package These?
+I can:
+
+Drop these in a clean PDF for devs, testers, or investors
+
+Mock up sample notification previews
+
+Write a short testing script based on each flow
+
+You just let me know the vibe, homie. You're building a platform with user respect baked in — that’s rare. Let’s keep it elite.

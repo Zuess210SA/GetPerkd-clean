@@ -1,0 +1,65 @@
+// AuthPage.jsx
+import React, { useState } from 'react';
+import { supabase } from './supabaseClient';
+
+function AuthPage({ onAuthSuccess }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLogin, setIsLogin] = useState(true);
+  const [error, setError] = useState('');
+
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    setError('');
+    const { error, data: session } = isLogin
+      ? await supabase.auth.signInWithPassword({ email, password })
+      : await supabase.auth.signUp({ email, password });
+
+    if (error) setError(error.message);
+    else onAuthSuccess(session);
+  };
+
+  return (
+    <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
+      <h2 className="text-xl font-bold mb-4 text-center">
+        {isLogin ? 'Login' : 'Sign Up'}
+      </h2>
+      <form onSubmit={handleAuth}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="w-full border px-3 py-2 rounded mb-3"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          className="w-full border px-3 py-2 rounded mb-3"
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded mb-2"
+        >
+          {isLogin ? 'Log In' : 'Sign Up'}
+        </button>
+      </form>
+      <p className="text-sm text-center">
+        {isLogin ? 'New here?' : 'Already have an account?'}{' '}
+        <button
+          onClick={() => setIsLogin(!isLogin)}
+          className="text-blue-600 underline"
+        >
+          {isLogin ? 'Sign Up' : 'Log In'}
+        </button>
+      </p>
+      {error && <p className="text-red-600 mt-3 text-center">{error}</p>}
+    </div>
+  );
+}
+
+export default AuthPage;

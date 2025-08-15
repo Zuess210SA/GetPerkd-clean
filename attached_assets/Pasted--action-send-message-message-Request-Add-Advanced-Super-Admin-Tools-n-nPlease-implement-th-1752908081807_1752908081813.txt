@@ -1,0 +1,53 @@
+{"action":"send_message","message":"✅ Request: Add Advanced Super Admin Tools\n\nPlease implement the following Super Admin dashboard enhancements:\n\n### 👤 Impersonation Tools\n- View as Any User (Student, Merchant, Franchisee, Admin)\n- Access dashboards and simulate sessions for real-time support or QA\n- Log impersonation actions in audit trail\n\n### 🧰 Bulk Edit Dashboard\n- Table editor to:\n - Modify multiple deals or users at once\n - Toggle deal status, update rewards, change merchant plans\n - Export/import CSV for batch processing\n\n### 📊 System-Wide Analytics Dashboard\n- Aggregate analytics across all user types\n- Filters by role, school, and time frame\n- Include exports for:\n - Total redemptions\n - Monthly active users\n - Revenue per school\n - Challenge completion rates\n\nAll features should be protected behind the /super-admin-dashboard route and scoped only to authenticated Super Admin users. Integrate logs into the existing audit trail and mark them as elevated actions.\n\nLet me know once the features are in the works or if you need mock UI components or endpoint specs."}
+
+Got it! Here's how you can pass this request to Replit manually since direct tool-to-Replit messaging isn’t supported:
+
+✅ Super Admin Enhancements Request
+Please implement the following advanced tools for the /super-admin-dashboard:
+
+👤 Impersonation Tools
+Add “View As” functionality for all roles (Student, Merchant, Franchisee, Admin)
+
+Allow Super Admin to simulate a session as any user
+
+Log all impersonation sessions in the audit trail with a timestamp and IP
+
+🧰 Bulk Edit Tools
+Table editor interface for:
+
+Mass updating deals (status, text, reward values)
+
+Editing user data or subscriptions in bulk
+
+CSV export/import capabilities
+
+📊 System-Wide Analytics Dashboard
+Aggregated analytics by:
+
+Role (student, merchant, franchisee)
+
+School/campus
+
+Date ranges
+
+Metrics to include:
+
+Total redemptions
+
+Monthly active users
+
+Deal scan & save rates
+
+Revenue per merchant/campus
+
+Top performing challenges
+
+Download/export reports in CSV
+
+💡 All features must:
+
+Be protected behind authenticated Super Admin login
+
+Include clear UI sections with filters and export options
+
+Be logged in audit trail with elevated privileges tag

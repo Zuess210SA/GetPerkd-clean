@@ -1,0 +1,105 @@
+import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import { supabase } from "./supabase";
+
+async function throwIfResNotOk(res: Response) {
+  if (!res.ok) {
+    const text = (await res.text()) || res.statusText;
+    throw new Error(`${res.status}: ${text}`);
+  }
+}
+
+async function getAuthHeaders() {
+  try {
+    // ✅ Always attempt to restore token from Supabase if missing in localStorage
+    let token = localStorage.getItem("supabase_token");
+
+    if (!token) {
+      const { data: { session }, error } = await supabase.auth.getSession();
+      token = session?.access_token;
+
+      if (token) {
+        localStorage.setItem("supabase_token", token);
+        console.log("💾 Token restored from Supabase session to localStorage");
+      }
+    }
+
+    console.log("📋 Auth headers request:", {
+      hasToken: !!token,
+      tokenSource: token
+        ? localStorage.getItem("supabase_token")
+          ? "localStorage"
+          : "supabase"
+        : "none",
+      tokenLength: token?.length,
+    });
+
+    if (token) {
+      const tokenPreview = `${token.substring(0, 20)}...`;
+      console.log("🔑 Including auth token:", {
+        tokenPreview,
+        fullLength: token.length,
+      });
+      return {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      } as Record<string, string>;
+    }
+
+    console.log("⚠️ No auth token available, making unauthenticated request");
+    return { "Content-Type": "application/json" } as Record<string, string>;
+  } catch (error) {
+    console.error("💥 Error getting auth headers:", error);
+    return { "Content-Type": "application/json" } as Record<string, string>;
+  }
+}
+
+export async function apiRequest(
+  method: string,
+  url: string,
+  data?: unknown | undefined,
+): Promise<Response> {
+  const headers = await getAuthHeaders();
+
+  const res = await fetch(url, {
+    method,
+    headers,
+    body: data ? JSON.stringify(data) : undefined,
+    credentials: "include",
+  });
+  await throwIfResNotOk(res);
+  return res;
+}
+
+type UnauthorizedBehavior = "returnNull" | "throw";
+export const getQueryFn: <T>(options: {
+  on401: UnauthorizedBehavior;
+}) => QueryFunction<T> =
+  ({ on401: unauthorizedBehavior }) =>
+  async ({ queryKey }) => {
+    const headers = await getAuthHeaders();
+
+    const res = await fetch(queryKey.join("/") as string, {
+      headers,
+      credentials: "include",
+    });
+    if (unauthorizedBehavior === "returnNull" && res.status === 401) {
+      return null;
+    }
+    await throwIfResNotOk(res);
+    return await res.json();
+  };
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      queryFn: getQueryFn({ on401: "throw" }),
+      refetchInterval: false,
+      refetchOnWindowFocus: false,
+      staleTime: Infinity,
+      retry: false,
+    },
+    mutations: {
+      retry: false,
+    },
+  },
+});

@@ -1,0 +1,95 @@
+👑 Get Perk’d Franchisee Model Evaluation
+Model Summary:
+Franchisee pays $299/month for city-wide exclusive territory and earns 50/50 revenue share per business signed.
+
+✅ Why It’s Fair (and Attractive) for Franchisees
+1. Territory Exclusivity for Cheap
+$299/month is low-risk for full-city ownership in the digital space.
+
+Compare this to traditional franchises that cost $10K–$50K+ upfront with 5–10% royalties.
+
+You’re essentially giving them a full local SaaS business in a box, ready to monetize.
+
+2. Unlimited Upside Through Revenue Share
+The 50/50 revenue split means franchisees earn recurring income from each merchant.
+
+As your pricing goes up or new upsells are added (email, flyers, managed services), their slice grows too.
+
+Aligns perfectly with hustle: More signups = more income.
+
+3. Built-In SaaS Infrastructure
+They don’t need to build anything. The tech, dashboard, support, updates — it’s all done.
+
+Think of it as owning a local Groupon / Honey / Rakuten, but with none of the dev work.
+
+4. Multi-Tier Monetization
+They can make money in several ways:
+
+Merchant subscriptions
+
+Print services or promo upsells
+
+Running local events or QR activations
+
+Brand ambassador management
+
+Add-on features (AI analytics, SMS credits)
+
+5. No Employee Burden
+They don’t need to hire staff unless they scale up fast.
+
+With your tools + backend, 1 person can run a city from a laptop.
+
+🤝 Why It’s Also Fair to You (Founder ROI)
+You retain control of brand, platform, and roadmap.
+
+Your base revenue ($299/month x cities) is guaranteed, giving stability.
+
+Franchisees do local onboarding + growth — you scale faster without hiring a salesforce.
+
+You’re sharing profits, not ownership.
+
+💡 Suggestions to Keep it Win-Win
+Limit City Size per Franchise
+
+Example: “San Antonio – North Zone” and “San Antonio – South Zone” if demand grows.
+
+Keeps exclusivity tight and prevents stagnation.
+
+Use Geofencing for Accuracy
+
+Let merchants self-onboard, but auto-assign them to the correct zone by business address (use Google Maps API for zip-based zones).
+
+Ensures franchisee always gets credit for businesses in their territory.
+
+Transparent Franchisee Dashboard
+
+Show them:
+
+of active merchants
+Revenue share total
+
+Leads not yet closed
+
+City heatmaps of performance
+
+Makes it feel like their own CRM.
+
+Incentive Milestones
+
+Example: “Get 20 merchants, unlock bonus $200”
+
+Or tiered rev share: first 10 = 40%, next 10 = 50%, etc.
+
+🔥 Bottom Line
+This model is:
+
+✅ Fair to franchisees
+
+✅ Low-risk + high upside
+
+✅ Perfectly scalable
+
+✅ Incentivizes hustle and loyalty
+
+You’ve got a Silicon Valley-level growth model that still respects local operators. That’s rare.

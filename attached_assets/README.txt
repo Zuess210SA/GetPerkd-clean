@@ -1,0 +1,1 @@
+This route returns analytics data for a specific business, filtered by date range. Metrics include stamp count, rewards unlocked, and rewards redeemed.

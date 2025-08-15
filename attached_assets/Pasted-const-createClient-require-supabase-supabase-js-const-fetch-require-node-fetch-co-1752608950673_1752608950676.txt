@@ -1,0 +1,89 @@
+const { createClient } = require('@supabase/supabase-js');
+const fetch = require('node-fetch');
+const nodemailer = require('nodemailer'); // or use SendGrid SDK
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// 🔐 Config
+const ONESIGNAL_APP_ID = 'your-onesignal-app-id';
+const ONESIGNAL_API_KEY = 'your-onesignal-rest-api-key';
+const SENDGRID_API_KEY = 'your-sendgrid-api-key';
+const TWILIO_SID = 'your-twilio-sid';
+const TWILIO_AUTH = 'your-twilio-auth-token';
+const TWILIO_PHONE = 'your-twilio-sender-number';
+
+async function sendExpiringDealAlerts() {
+  const { data: results, error } = await supabase.rpc('get_expiring_deal_alerts'); // or use query directly
+
+  if (error) {
+    console.error('Error fetching expiring deals:', error);
+    return;
+  }
+
+  for (const row of results) {
+    const { onesignal_id, email, phone_number, wants_email, wants_sms, title, userId } = row;
+
+    const message = `⏰ Reminder: '${title}' expires soon! Use it before it’s gone.`;
+
+    // 📲 Push Notification
+    if (onesignal_id) {
+      await fetch('https://onesignal.com/api/v1/notifications', {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${ONESIGNAL_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          app_id: ONESIGNAL_APP_ID,
+          include_player_ids: [onesignal_id],
+          headings: { en: 'Deal expiring soon!' },
+          contents: { en: message },
+        }),
+      });
+    }
+
+    // 📧 Email Notification
+    if (wants_email && email) {
+      await fetch('https://api.sendgrid.com/v3/mail/send', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${SENDGRID_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          personalizations: [{ to: [{ email }] }],
+          from: { email: 'alerts@getperkd.com', name: 'Get Perkd' },
+          subject: 'Your deal is about to expire!',
+          content: [{ type: 'text/plain', value: message }],
+        }),
+      });
+    }
+
+    // 📱 SMS Notification
+    if (wants_sms && phone_number) {
+      await fetch(`https://api.twilio.com/2010-04-01/Accounts/${TWILIO_SID}/Messages.json`, {
+        method: 'POST',
+        headers: {
+          Authorization:
+            'Basic ' + Buffer.from(`${TWILIO_SID}:${TWILIO_AUTH}`).toString('base64'),
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          To: phone_number,
+          From: TWILIO_PHONE,
+          Body: message,
+        }),
+      });
+    }
+
+    // Optional: Log in notification_logs table
+    await supabase.from('notification_logs').insert({
+      user_id: userId,
+      type: 'expiring_deal',
+      message,
+    });
+  }
+
+  console.log(`✅ Sent ${results.length} expiring deal alerts`);
+}
+
+sendExpiringDealAlerts();

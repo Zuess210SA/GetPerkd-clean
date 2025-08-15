@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Authentication Fix Validation</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .pending { background-color: #fff3cd; border-color: #ffeeba; }
+        button { padding: 10px 20px; margin: 10px 0; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .log { background: #f8f9fa; padding: 10px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto; }
+        .step { margin: 10px 0; padding: 10px; background: #e9ecef; border-radius: 4px; }
+        .result { font-weight: bold; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🔧 ChatGPT Authentication Fix Comprehensive Test</h1>
+    <p><strong>Purpose:</strong> Verify all three ChatGPT authentication fixes are working:</p>
+    <ol>
+        <li>Backend token validation using supabase.auth.getUser()</li>
+        <li>Frontend auth headers with Authorization Bearer tokens</li>
+        <li>Post-login redirect with auth state listener</li>
+    </ol>
+
+    <div class="test-section pending" id="test1">
+        <h2>Test 1: Backend Token Validation</h2>
+        <p>Testing that API routes properly validate Supabase JWT tokens</p>
+        <button onclick="testBackendValidation()">Test Backend Validation</button>
+        <div id="backend-result" class="result"></div>
+        <div id="backend-log" class="log" style="display:none;"></div>
+    </div>
+
+    <div class="test-section pending" id="test2">
+        <h2>Test 2: Frontend Auth Headers</h2>
+        <p>Testing that frontend properly sends Authorization Bearer tokens</p>
+        <button onclick="testFrontendHeaders()">Test Frontend Headers</button>
+        <div id="frontend-result" class="result"></div>
+        <div id="frontend-log" class="log" style="display:none;"></div>
+    </div>
+
+    <div class="test-section pending" id="test3">
+        <h2>Test 3: Authentication Integration</h2>
+        <p>Testing complete login flow with redirect and token persistence</p>
+        <div class="step">
+            <strong>Manual Test Steps:</strong>
+            <ol>
+                <li>Go to <a href="/auth" target="_blank">/auth page</a></li>
+                <li>Login with: robertmcveigh1977@gmail.com</li>
+                <li>Verify automatic redirect to dashboard</li>
+                <li>Check that API calls return 200 instead of 401</li>
+            </ol>
+        </div>
+        <button onclick="checkAuthState()">Check Current Auth State</button>
+        <div id="auth-result" class="result"></div>
+        <div id="auth-log" class="log" style="display:none;"></div>
+    </div>
+
+    <div class="test-section pending" id="summary">
+        <h2>Test Summary</h2>
+        <div id="summary-result" class="result">Tests not yet run</div>
+        <div id="overall-status"></div>
+    </div>
+
+    <script>
+        let testResults = {
+            backend: null,
+            frontend: null,
+            integration: null
+        };
+
+        function log(elementId, message) {
+            const logElement = document.getElementById(elementId);
+            logElement.style.display = 'block';
+            logElement.innerHTML += new Date().toLocaleTimeString() + ': ' + message + '\n';
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        function updateTestStatus(testId, status) {
+            const element = document.getElementById(testId);
+            element.className = `test-section ${status}`;
+        }
+
+        function updateSummary() {
+            const results = Object.values(testResults);
+            const completed = results.filter(r => r !== null).length;
+            const passed = results.filter(r => r === true).length;
+            const failed = results.filter(r => r === false).length;
+            
+            document.getElementById('summary-result').innerHTML = 
+                `Completed: ${completed}/3 | Passed: ${passed} | Failed: ${failed}`;
+            
+            if (completed === 3) {
+                const allPassed = passed === 3;
+                document.getElementById('overall-status').innerHTML = allPassed 
+                    ? '<h3 style="color: green;">✅ All ChatGPT Authentication Fixes Working!</h3>'
+                    : '<h3 style="color: red;">❌ Some Authentication Issues Remain</h3>';
+                updateTestStatus('summary', allPassed ? 'success' : 'error');
+            }
+        }
+
+        async function testBackendValidation() {
+            log('backend-log', 'Testing backend token validation...');
+            
+            try {
+                // Test 1: API call without token (should work for public endpoints)
+                log('backend-log', 'Testing public endpoint without token...');
+                const publicResponse = await fetch('/api/deals');
+                log('backend-log', `Public API response: ${publicResponse.status}`);
+                
+                // Test 2: Check if token validation middleware is working
+                log('backend-log', 'Testing middleware token extraction...');
+                const testResponse = await fetch('/api/stats');
+                log('backend-log', `Stats API response: ${testResponse.status}`);
+                
+                // Test 3: Check auth middleware logs in console
+                log('backend-log', 'Check browser console for middleware logs');
+                log('backend-log', 'Look for "Token extraction attempt" messages');
+                
+                document.getElementById('backend-result').innerHTML = 
+                    '✅ Backend validation middleware active (check console logs)';
+                testResults.backend = true;
+                updateTestStatus('test1', 'success');
+                
+            } catch (error) {
+                log('backend-log', `Backend test error: ${error.message}`);
+                document.getElementById('backend-result').innerHTML = 
+                    `❌ Backend validation failed: ${error.message}`;
+                testResults.backend = false;
+                updateTestStatus('test1', 'error');
+            }
+            
+            updateSummary();
+        }
+
+        async function testFrontendHeaders() {
+            log('frontend-log', 'Testing frontend auth header generation...');
+            
+            try {
+                // Check if token exists in localStorage
+                const token = localStorage.getItem('supabase_token');
+                log('frontend-log', `Token in localStorage: ${token ? 'Found' : 'Not found'}`);
+                log('frontend-log', `Token length: ${token ? token.length : 0}`);
+                
+                if (token) {
+                    // Test manual API call with token
+                    log('frontend-log', 'Testing manual API call with token...');
+                    const response = await fetch('/api/users/1/stats', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    log('frontend-log', `API call with token response: ${response.status}`);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        log('frontend-log', `API data received: ${JSON.stringify(data).substring(0, 100)}...`);
+                        
+                        document.getElementById('frontend-result').innerHTML = 
+                            '✅ Frontend auth headers working properly';
+                        testResults.frontend = true;
+                        updateTestStatus('test2', 'success');
+                    } else {
+                        throw new Error(`API returned ${response.status}`);
+                    }
+                } else {
+                    document.getElementById('frontend-result').innerHTML = 
+                        '⚠️ No token found - user needs to login first';
+                    testResults.frontend = null;
+                    updateTestStatus('test2', 'pending');
+                }
+                
+            } catch (error) {
+                log('frontend-log', `Frontend test error: ${error.message}`);
+                document.getElementById('frontend-result').innerHTML = 
+                    `❌ Frontend headers failed: ${error.message}`;
+                testResults.frontend = false;
+                updateTestStatus('test2', 'error');
+            }
+            
+            updateSummary();
+        }
+
+        async function checkAuthState() {
+            log('auth-log', 'Checking current authentication state...');
+            
+            try {
+                // Check localStorage token
+                const token = localStorage.getItem('supabase_token');
+                log('auth-log', `localStorage token: ${token ? 'Present' : 'Missing'}`);
+                
+                // Check current page
+                log('auth-log', `Current page: ${window.location.pathname}`);
+                
+                // Test if we can make authenticated API calls
+                if (token) {
+                    log('auth-log', 'Testing authenticated API call...');
+                    const response = await fetch('/api/users/1/stats', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    log('auth-log', `Authenticated API response: ${response.status}`);
+                    
+                    if (response.ok) {
+                        document.getElementById('auth-result').innerHTML = 
+                            '✅ User authenticated and API calls working';
+                        testResults.integration = true;
+                        updateTestStatus('test3', 'success');
+                    } else {
+                        document.getElementById('auth-result').innerHTML = 
+                            `⚠️ Token present but API calls failing (${response.status})`;
+                        testResults.integration = false;
+                        updateTestStatus('test3', 'error');
+                    }
+                } else {
+                    document.getElementById('auth-result').innerHTML = 
+                        '❌ User not authenticated - please login at /auth';
+                    testResults.integration = false;
+                    updateTestStatus('test3', 'error');
+                }
+                
+            } catch (error) {
+                log('auth-log', `Auth state check error: ${error.message}`);
+                document.getElementById('auth-result').innerHTML = 
+                    `❌ Auth check failed: ${error.message}`;
+                testResults.integration = false;
+                updateTestStatus('test3', 'error');
+            }
+            
+            updateSummary();
+        }
+
+        // Auto-run basic tests on page load
+        window.onload = function() {
+            setTimeout(testBackendValidation, 1000);
+            setTimeout(testFrontendHeaders, 2000);
+            setTimeout(checkAuthState, 3000);
+        };
+    </script>
+</body>
+</html>

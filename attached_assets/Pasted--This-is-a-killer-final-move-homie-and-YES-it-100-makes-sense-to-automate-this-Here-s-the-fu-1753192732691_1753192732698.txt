@@ -1,0 +1,60 @@
+🔥 This is a killer final move, homie — and YES, it 100% makes sense to automate this. Here's the full breakdown so we lock it in clean and efficient:
+
+✅ Your Goal:
+Every business should automatically get access to the City Card for the city they’re physically located in, without it counting against their campus limits.
+
+🧠 Why AUTOMATE It?
+Faster onboarding – no manual tagging or human error
+
+Scalable – works seamlessly as you expand to new cities
+
+Smart UX – businesses expect their local visibility to be default
+
+No confusion – your plans are based on campuses, not cities
+
+🔁 Suggested Logic (AUTOMATE THIS NOW):
+python
+Copy
+Edit
+When a business is created or updated:
+  1. Look up the business’s city (from address or lat/lng)
+  2. Auto-assign the corresponding city card (e.g., San Antonio, Austin, San Marcos)
+  3. Mark it as “auto-assigned” in the database (for clarity)
+This assignment:
+
+✅ Does NOT count toward campus usage
+
+✅ Is always active as long as the business is located in that city
+
+✅ Can co-exist with campus-specific targeting
+
+🌆 What About Businesses in Multiple Cities?
+Perfect. Here's your logic:
+
+Case	Solution
+🏙️ Single location	Auto-assign 1 city card
+🏢 Multiple locations	Each location auto-gets its city’s card
+🧳 HQ-based chains	Use location-based logic for each deal
+🔁 Deal applies to multiple cities	Add a City Card Add-on ($X/month per city card beyond the first) — optional, not required
+
+This makes it fair and predictable:
+
+You don’t penalize a San Antonio business for showing up in San Antonio
+
+You charge for additional city visibility only when requested
+
+🛠 Implementation Recommendation:
+✅ Automate now (before launch)
+
+One-time backend script to update existing records
+
+Ongoing logic baked into business onboarding & updates
+
+Add a “🟢 Auto-assigned City Card: San Antonio” badge in the dashboard so businesses know
+
+🔒 Summary
+Decision Point	Recommendation
+Auto-assign city cards?	✅ YES — automate immediately
+Count toward plan limits?	❌ NO — only campus targets count
+Multi-city logic?	✅ Handle via per-location auto-assign OR add-on
+When to implement?	🚀 BEFORE LAUNCH — this is foundational
