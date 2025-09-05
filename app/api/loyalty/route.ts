@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
           name,
           category
         )
-      `)
+      `) // 👈 this backtick closes here
       .eq('is_active', true);
 
     if (cardsError) {
@@ -51,9 +51,13 @@ export async function GET(req: NextRequest) {
           .eq('card_id', card.id)
           .maybeSingle();
 
+        const business_name = Array.isArray(card.businesses)
+          ? card.businesses[0]?.name ?? 'Unknown Business'
+          : (card.businesses as any)?.name ?? 'Unknown Business';
+
         return {
           id: card.id,
-          business_name: card.businesses?.name || 'Unknown Business',
+          business_name,
           name: card.name,
           description: card.description,
           stamp_requirement: card.stamp_requirement,
