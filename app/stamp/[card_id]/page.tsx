@@ -1,3 +1,4 @@
+// app/stamp/[card_id]/page.tsx
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -7,7 +8,17 @@ import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 import confetti from 'canvas-confetti'
 import { Gift, Pizza, Coffee, GraduationCap, Star, CheckCircle, XCircle } from 'lucide-react'
-import type { AddStampResponse } from '../../../client/src/types/loyalty'
+// ❌ removed: import type { AddStampResponse } from '../../../client/src/types/loyalty'
+
+// ✅ Inline type so there’s no missing import
+type AddStampResponse = {
+  success: boolean
+  message: string
+  reward_unlocked?: boolean
+  reward_id?: string | null
+  new_stamp_count?: number
+  cooldown_expires?: string | null
+}
 
 export default function QRStampPage() {
   const params = useParams()
@@ -28,7 +39,8 @@ export default function QRStampPage() {
         const data: AddStampResponse = await response.json()
 
         if (!response.ok) {
-          throw new Error(data.message || 'Failed to add stamp')
+          // If backend sent { message }, surface it; else generic
+          throw new Error((data as any)?.message || 'Failed to add stamp')
         }
 
         setResult(data)
