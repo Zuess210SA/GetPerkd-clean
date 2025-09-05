@@ -20,7 +20,7 @@ const customStorage = {
   }
 }
 
-export function await createClient() {
+export function createClient() {
   console.log('[SUPABASE] Creating client with FORCED sessionStorage')
   
   return createBrowserClient(
