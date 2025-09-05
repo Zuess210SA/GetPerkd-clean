@@ -3,7 +3,7 @@ import { createClient } from '@/utils/supabase-server'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const {
     data: { user },
