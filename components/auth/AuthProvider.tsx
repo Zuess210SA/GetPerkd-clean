@@ -20,24 +20,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true)
   const [sessionReady, setSessionReady] = useState(false)
   const supabase = createClient()
-  
-  // Cache management
-  const CACHE_KEY = 'auth_user_cache'
-  const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 
-  // Cache utilities
+  // Optional cache helpers (caching currently disabled)
+  const CACHE_KEY = 'auth_user_cache'
+  const CACHE_DURATION = 5 * 60 * 1000
+
   const getCachedUser = () => {
     try {
       const cached = localStorage.getItem(CACHE_KEY)
       if (cached) {
         const { user: cachedUser, timestamp } = JSON.parse(cached)
-        const now = Date.now()
-        if (now - timestamp < CACHE_DURATION) {
-          return cachedUser
-        }
+        if (Date.now() - timestamp < CACHE_DURATION) return cachedUser
         localStorage.removeItem(CACHE_KEY)
       }
-    } catch (error) {
+    } catch {
       localStorage.removeItem(CACHE_KEY)
     }
     return null
@@ -46,35 +42,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const setCachedUser = (userData: User | null) => {
     try {
       if (userData) {
-        localStorage.setItem(CACHE_KEY, JSON.stringify({
-          user: userData,
-          timestamp: Date.now()
-        }))
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ user: userData, timestamp: Date.now() }))
       } else {
         localStorage.removeItem(CACHE_KEY)
       }
-    } catch (error) {
-      // Silent fail for localStorage issues
+    } catch {
+      // ignore storage errors
     }
   }
 
   useEffect(() => {
-    // DISABLED CACHING - Force fresh session check every time
-    console.log('[AUTH] Initializing fresh session check - NO CACHE')
-    
-    // Get initial session with proper ready state - ALWAYS FRESH
     const getInitialSession = async () => {
       try {
-        // Force fresh session check
         const { data: { session }, error } = await supabase.auth.getSession()
-        
         if (error) {
           console.error('[AUTH] Session fetch error:', error)
           setUser(null)
         } else {
-          const userData = session?.user ?? null
-          setUser(userData)
-          console.log('[AUTH] Session initialized:', userData ? `User: ${userData.email}` : 'No user')
+          setUser(session?.user ?? null)
         }
       } catch (error) {
         console.error('[AUTH] Session initialization error:', error)
@@ -87,96 +72,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     getInitialSession()
 
-    // Listen for auth changes with token refresh handling
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log('[AUTH] Auth state change:', event)
-        
-        const userData = session?.user ?? null
-        setUser(userData)
-        // DISABLED: setCachedUser(userData) - NO MORE CACHING
-        setLoading(false)
-
-        // Handle token refresh - NO MANUAL STORAGE
-        if (event === 'TOKEN_REFRESHED' && session) {
-          console.log('[AUTH] Token refreshed successfully - letting Supabase handle storage')
-          // DO NOT manually store tokens - let Supabase SSR handle this
-        }
-
-        // Handle session expiry  
-        if (event === 'SIGNED_OUT') {
-          console.log('[AUTH] User signed out - clearing all session data')
-          
-          // Nuclear cleanup on signout
-          const supabaseKeys = [
-            'sb-session', 'sb-refresh-token', 'sb-access-token',
-            'supabase.auth.token', 'supabase_token', 'supabase_session',
-            'sb-' + process.env.NEXT_PUBLIC_SUPABASE_URL + '-auth-token',
-            CACHE_KEY
-          ]
-          
-          supabaseKeys.forEach(key => {
-            try {
-              localStorage.removeItem(key)
-              sessionStorage.removeItem(key)
-            } catch (e) {}
-          })
-          
-          setCachedUser(null)
-          setUser(null)
-        }
-      }
-    )
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+      setLoading(false)
+    })
 
     return () => subscription.unsubscribe()
-  }, [supabase.auth])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [supabase])
 
   const signIn = async (email: string, password: string) => {
-    console.log('[AUTH] FORCING FRESH LOGIN - Clearing all dead tokens first')
-    
-    // 1. NUCLEAR CLEANUP before login to prevent token reuse
-    const supabaseKeys = [
+    // Clean up any old tokens first (defensive)
+    const keys = [
       'sb-session', 'sb-refresh-token', 'sb-access-token',
       'supabase.auth.token', 'supabase_token', 'supabase_session',
       'sb-' + process.env.NEXT_PUBLIC_SUPABASE_URL + '-auth-token',
       CACHE_KEY
     ]
-    
-    supabaseKeys.forEach(key => {
-      try {
-        localStorage.removeItem(key)
-        sessionStorage.removeItem(key)
-      } catch (e) {}
+    keys.forEach(k => {
+      try { localStorage.removeItem(k); sessionStorage.removeItem(k) } catch {}
     })
-    
-    // 2. Force signOut to clear any persisted session
-    try {
-      await supabase.auth.signOut({ scope: 'global' })
-    } catch (e) {
-      console.log('[AUTH] SignOut before login completed')
-    }
-    
-    // 3. Force fresh login with explicit options
-    console.log('[AUTH] Attempting fresh login with clean session')
-    const { error, data } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-      options: {
-        shouldCreateUser: false, // Prevent unnecessary user creation
-      }
-    })
-    
+
+    try { await supabase.auth.signOut({ scope: 'global' }) } catch {}
+
+    // IMPORTANT: removed invalid shouldCreateUser option
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
       console.error('[AUTH] Login failed:', error.message)
       throw error
-    }
-    
-    if (data.session) {
-      console.log('[AUTH] LOGIN SUCCESS - Fresh tokens generated:', {
-        hasAccessToken: !!data.session.access_token,
-        hasRefreshToken: !!data.session.refresh_token,
-        tokenHash: data.session.access_token?.substring(0, 10) + '...'
-      })
     }
   }
 
@@ -184,43 +107,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: userData,
-      },
+      options: { data: userData }
     })
     if (error) throw error
   }
 
   const signOut = async () => {
-    console.log('[AUTH] FORCING COMPLETE LOGOUT - Clearing all Supabase tokens')
-    
-    // 1. Clear cache immediately
     setCachedUser(null)
     setUser(null)
-    
-    // 2. Force sign out from Supabase with global scope
-    try {
-      await supabase.auth.signOut({ scope: 'global' })
-    } catch (error) {
+    try { await supabase.auth.signOut({ scope: 'global' }) } catch (error) {
       console.error('[AUTH] SignOut error:', error)
     }
-    
-    // 3. NUCLEAR CLEANUP - Clear ALL possible Supabase storage keys
-    const supabaseKeys = [
+
+    const keys = [
       'sb-session', 'sb-refresh-token', 'sb-access-token',
       'supabase.auth.token', 'supabase_token', 'supabase_session',
       'sb-' + process.env.NEXT_PUBLIC_SUPABASE_URL + '-auth-token',
       CACHE_KEY
     ]
-    
-    supabaseKeys.forEach(key => {
-      try {
-        localStorage.removeItem(key)
-        sessionStorage.removeItem(key)
-      } catch (e) {}
+    keys.forEach(k => {
+      try { localStorage.removeItem(k); sessionStorage.removeItem(k) } catch {}
     })
-    
-    console.log('[AUTH] LOGOUT COMPLETE - All tokens destroyed')
   }
 
   const value: AuthContextType = {
@@ -229,7 +136,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     sessionReady,
     signIn,
     signUp,
-    signOut,
+    signOut
   }
 
   return (
@@ -246,3 +153,7 @@ export function useAuth() {
   }
   return context
 }
+
+// In case your app imports a default:
+// This line makes both `import AuthProvider from ...` and `import { AuthProvider } from ...` work.
+export default AuthProvider
